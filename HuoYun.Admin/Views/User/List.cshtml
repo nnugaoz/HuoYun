@@ -1,0 +1,43 @@
+﻿@using HuoYun.Domain.Entities
+@model IEnumerable<T_User>
+
+@{
+    ViewBag.Title = "List";
+}
+<h3>
+    用户列表
+</h3>
+<div>
+    <table class="table table-striped table-bordered table-hover table-hover">
+        <thead>
+            <tr>
+                <td>编码</td>
+                <td>手机号</td>
+                <td>密码</td>
+                <td>用户类型</td>
+                <td>是否删除</td>
+                <td>编辑人</td>
+                <td>编辑时间</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.ID</td>
+                    <td>@user.CellPhone</td>
+                    <td>@user.Password</td>
+                    <td>@user.Type</td>
+                    <td>@user.Del</td>
+                    <td>@user.EditMan</td>
+                    <td>@user.EditDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    @Html.ActionLink("创建用户", "New", null, new { @class = "btn btn-primary" })
+</div>
+
+

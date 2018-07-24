@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuoYun.Domain", "HuoYun.Domain\HuoYun.Domain.csproj", "{8F2DFFCA-F19F-4F45-A267-B93A71B85DC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuoYun.WebUI", "HuoYun.WebUI\HuoYun.WebUI.csproj", "{39E95206-658A-4ABF-9E97-62FDF0DB28B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HuoYun.Admin", "HuoYun.Admin\HuoYun.Admin.csproj", "{97839FA0-7E97-4D37-BD19-3083D16A2441}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F2DFFCA-F19F-4F45-A267-B93A71B85DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F2DFFCA-F19F-4F45-A267-B93A71B85DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F2DFFCA-F19F-4F45-A267-B93A71B85DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F2DFFCA-F19F-4F45-A267-B93A71B85DC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39E95206-658A-4ABF-9E97-62FDF0DB28B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39E95206-658A-4ABF-9E97-62FDF0DB28B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39E95206-658A-4ABF-9E97-62FDF0DB28B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39E95206-658A-4ABF-9E97-62FDF0DB28B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97839FA0-7E97-4D37-BD19-3083D16A2441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97839FA0-7E97-4D37-BD19-3083D16A2441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97839FA0-7E97-4D37-BD19-3083D16A2441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97839FA0-7E97-4D37-BD19-3083D16A2441}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
