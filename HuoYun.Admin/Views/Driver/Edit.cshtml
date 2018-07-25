@@ -12,90 +12,129 @@
 
         <label class="control-label col-md-2">注册手机号</label>
         <div class="col-md-2">
-            @Html.TextBox("CellPhone", null, new { @class = "form-control" })
+            @Html.TextBox("CellPhone", null, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+
+        <label class="control-label col-md-2">姓名</label>
+        <div class="col-md-2">
+            @Html.TextBox("Name", null, new { @class = "form-control" })
+        </div>
+
+        <label class="control-label col-md-2">微信号</label>
+        <div class="col-md-2">
+            @Html.TextBox("Wx", null, new { @class = "form-control" })
         </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label">姓名</label>
-        @Html.TextBox("Name", null, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group col-md-4">
-        <label class="control-label">微信号</label>
-        @Html.TextBox("Wx", null, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group col-md-4">
-        <label class="control-label">身份证号码</label>
-        @Html.TextBox("IDCardNo", null, new { @class = "form-control" })
+        <label class="control-label col-md-2">身份证号码</label>
+        <div class="col-md-2">
+            @Html.TextBox("IDCardNo", null, new { @class = "form-control " })
+        </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label">上传身份证照片</label>
-        <input name="IDCardImg" type="file" />
+        <a href="#" onclick="javascript: void (0);">
+            <label for="IDCardImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传身份证照片</label>
+        </a>
+        <div class="col-md-2">
+            <input name="IDCardImg" type="file" id="IDCardImg" style="display:none" />
+            <img class="img-thumbnail" id="imgIDCardImg" name="imgIDCardImg" style="width:100px;height:100px;" />
+        </div>
+        <a href="#" onclick="javascript: void (0);">
+            <label for="HeadImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传头像</label>
+        </a>
+        <div class="col-md-2">
+            <input name="HeadImg" type="file" id="HeadImg" style="display:none" />
+            <img class="img-thumbnail" id="imgHeadImg" name="imgHeadImg" style="width:100px;height:100px;" />
+        </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label">上传头像</label>
-        <input name="HeadImg" type="file" />
+        <label class="control-label col-md-2">车辆品牌</label>
+        <div class="col-md-2">
+            @Html.TextBox("CarBrandID", null, new { @class = "form-control" })
+        </div>
+        <label class="control-label col-md-2">车辆类型</label>
+        <div class="col-md-2">
+            @Html.TextBox("CarTypeID", null, new { @class = "form-control" })
+        </div>
+        <label class="control-label col-md-2">出厂年份</label>
+        <div class="col-md-2">
+            @Html.TextBox("MYear", null, new { @class = "form-control" })
+        </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label">车辆品牌</label>
-        @Html.TextBox("CarBrandID", null, new { @class = "form-control" })
+        <label class="control-label col-md-2">车牌号码</label>
+        <div class="col-md-2">
+            @Html.TextBox("CarNo", null, new { @class = "form-control" })
+        </div>
+        <label class="control-label col-md-2">车长</label>
+        <div class="col-md-2">
+            @Html.TextBox("CarLen", null, new { @class = "form-control" })
+        </div>
+        <label class="control-label col-md-2">载重</label>
+        <div class="col-md-2">
+            @Html.TextBox("CardLoad", null, new { @class = "form-control" })
+        </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label">车辆类型</label>
-        @Html.TextBox("CarTypeID", null, new { @class = "form-control" })
+        <a href="#" onclick="javascript: void (0);">
+            <label for="CarImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传车辆照片</label>
+        </a>
+        <div class="col-md-2">
+            <input name="CarImg" type="file" id="CarImg" style="display:none" />
+            <img class="img-thumbnail" id="imgCarImg" name="imgCarImg" style="width:100px;height:100px;" />
+        </div>
+        <a href="#" onclick="javascript: void (0);">
+            <label for="DRImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传驾驶证照片</label>
+        </a>
+        <div class="col-md-2">
+            <input name="DRImg" type="file" id="DRImg" style="display:none" />
+            <img class="img-thumbnail" id="imgDRImg" name="imgDRImg" style="width:100px;height:100px;" />
+        </div>
+        <a href="#" onclick="javascript: void (0);">
+            <label for="DLImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传车辆行驶证照片</label>
+        </a>
+        <div class="col-md-2">
+            <input name="DLImg" type="file" id="DLImg" style="display:none" />
+            <img class="img-thumbnail" id="imgDLImg" name="imgDLImg" style="width:100px;height:100px;" />
+        </div>
     </div>
 
     <div class="form-group">
-        <label class="control-label">出厂年份</label>
-        @Html.TextBox("MYear", null, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">车牌号码</label>
-        @Html.TextBox("CarNo", null, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">车长</label>
-        @Html.TextBox("CarLen", null, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">载重</label>
-        @Html.TextBox("CardLoad", null, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">上传车辆照片</label>
-        <input name="CarImg" type="file" />
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">上传驾驶证照片</label>
-        <input name="DRImg" type="file" />
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">上传车辆行驶证照片</label>
-        <input name="DLImg" type="file" />
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">认证状态</label>
-        @Html.TextBox("Authenticated", null, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">押金</label>
-        @Html.TextBox("Deposit", null, new { @class = "form-control" })
+        <label class="control-label col-md-2">认证状态</label>
+        <div class="col-md-2">
+            @Html.TextBox("Authenticated", null, new { @class = "form-control" })
+        </div>
+        <label class="control-label col-md-2">押金</label>
+        <div class="col-md-2">
+            @Html.TextBox("Deposit", null, new { @class = "form-control", })
+        </div>
     </div>
 
     <input type="submit" class="btn btn-primary" value="保存" />
 }
 
+<script type="text/javascript">
+    function showImage(src, target) {
+        var fr = new FileReader();
+        // when image is loaded, set the src of the image where you want to display it
+        fr.onload = function (e) { target.src = this.result; };
+        src.addEventListener("change", function () {
+            // fill fr with image data
+            fr.readAsDataURL(src.files[0]);
+        });
+    }
+
+    $(function () {
+        showImage($('#IDCardImg')[0], $('#imgIDCardImg')[0]);
+        showImage($('#HeadImg')[0], $('#imgHeadImg')[0]);
+        showImage($('#CarImg')[0], $('#imgCarImg')[0]);
+        showImage($('#DRImg')[0], $('#imgDRImg')[0]);
+        showImage($('#DLImg')[0], $('#imgDLImg')[0]);
+    });
+
+</script>
