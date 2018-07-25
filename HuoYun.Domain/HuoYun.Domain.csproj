@@ -48,9 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ICargoOwnerRepository.cs" />
+    <Compile Include="Abstract\IDriverRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\EFCargoOwnerRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\EFDriverRepository.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
+    <Compile Include="Entities\T_CargoOwner.cs" />
+    <Compile Include="Entities\T_Driver.cs" />
     <Compile Include="Entities\T_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

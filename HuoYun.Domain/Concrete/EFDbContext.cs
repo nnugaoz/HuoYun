@@ -11,5 +11,9 @@ namespace HuoYun.Domain.Concrete
     class EFDbContext:DbContext
     {
         public DbSet<T_User> Users { get; set; }
+
+        public DbSet<T_Driver> Drivers { get; set; }
+
+        public DbSet<T_CargoOwner> CargoOwner { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace HuoYun.Admin.Models
     public class UserListViewModel
     {
         List<UserViewModel> lUserListViewModel = new List<UserViewModel>();
-        IUserRepository mUserRepository;
+        //IUserRepository mUserRepository;
 
         public UserListViewModel(IUserRepository pUserRepository)
         {

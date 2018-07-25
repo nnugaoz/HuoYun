@@ -1,0 +1,69 @@
+﻿@using HuoYun.Domain.Entities
+@model IEnumerable<T_CargoOwner>
+
+@{
+    ViewBag.Title = "List";
+}
+<h3>
+    用户列表
+</h3>
+<div>
+    <table class="table table-striped table-bordered table-hover table-hover">
+        <thead>
+            <tr>
+                <td class="text-center">编码</td>
+                <td class="text-center">姓名</td>
+                <td class="text-center">微信号</td>
+                <td class="text-center">身份证号码</td>
+                <td class="text-center">车辆品牌</td>
+                <td class="text-center">车辆类型</td>
+                <td class="text-center">出厂年份</td>
+                <td class="text-center">车牌号码</td>
+                <td class="text-center">车长</td>
+                <td class="text-center">载重</td>
+                <td class="text-center">认证状态</td>
+                <td class="text-center">押金金额</td>
+                <td class="text-center">是否删除</td>
+                <td class="text-center">编辑人</td>
+                <td class="text-center">编辑时间</td>
+                <td class="text-center"></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cargoOwner in Model)
+            {
+                <tr>
+                    <td>@cargoOwner.ID</td>
+                    <td>@cargoOwner.Name</td>
+                    <td>@cargoOwner.Wx</td>
+                    <td>@cargoOwner.IDCardNo</td>
+                    <td>@cargoOwner.Authenticated</td>
+                    <td>@cargoOwner.Deposit</td>
+
+                    <td>
+                        @{
+                string lDel = "";
+                if (cargoOwner.Del)
+                {
+                    lDel = "是";
+                }
+                else
+                {
+                    lDel = "否";
+                }
+                        }
+                        @lDel
+                    </td>
+                    <td>@cargoOwner.EditMan</td>
+                    <td>@cargoOwner.EditDate</td>
+                    <td class="text-center">
+                        @Html.ActionLink("编辑", "Edit", new { p_ID = cargoOwner.ID }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("删除", "Delete", new { p_ID = cargoOwner.ID }, new { @class = "btn btn-warning" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
