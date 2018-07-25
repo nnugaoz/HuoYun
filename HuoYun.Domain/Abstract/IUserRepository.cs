@@ -12,5 +12,7 @@ namespace HuoYun.Domain.Abstract
         IEnumerable<T_User> Users { get; }
 
         void Save(T_User p_User);
+
+        void Delete(string p_ID);
     }
 }

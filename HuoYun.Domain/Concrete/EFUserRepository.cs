@@ -39,5 +39,17 @@ namespace HuoYun.Domain.Concrete
             }
             context.SaveChanges();
         }
+
+
+        public void Delete(string p_ID)
+        {
+            T_User lUser = context.Users.FirstOrDefault(e => e.ID == p_ID);
+
+            if (lUser != null)
+            {
+                context.Users.Remove(lUser);
+            }
+            context.SaveChanges();
+        }
     }
 }

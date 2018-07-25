@@ -11,33 +11,71 @@
     <table class="table table-striped table-bordered table-hover table-hover">
         <thead>
             <tr>
-                <td>编码</td>
-                <td>手机号</td>
-                <td>密码</td>
-                <td>用户类型</td>
-                <td>是否删除</td>
-                <td>编辑人</td>
-                <td>编辑时间</td>
+                <td class="text-center">手机号</td>
+                <td class="text-center">用户类型</td>
+                <td class="text-center">是否删除</td>
+                <td class="text-center">编辑人</td>
+                <td class="text-center">编辑时间</td>
+                <td class="text-center"></td>
             </tr>
         </thead>
         <tbody>
             @foreach (var user in Model)
             {
                 <tr>
-                    <td>@user.ID</td>
                     <td>@user.CellPhone</td>
-                    <td>@user.Password</td>
-                    <td>@user.Type</td>
-                    <td>@user.Del</td>
+                    <td>
+                        @{
+                string lTypeName = "";
+                switch (user.Type)
+                {
+                    case 1:
+                        lTypeName = "管理员";
+                        break;
+                    case 2:
+                        lTypeName = "车主";
+                        break;
+                    case 3:
+                        lTypeName = "货主";
+                        break;
+                    case 4:
+                        lTypeName = "信息发布";
+                        break;
+                    case 5:
+                        lTypeName = "财务";
+                        break;
+
+                }
+                        }
+                        @lTypeName
+                    </td>
+                    <td>
+                        @{
+                string lDel = "";
+                if (user.Del)
+                {
+                    lDel = "是";
+                }
+                else
+                {
+                    lDel = "否";
+                }
+                        }
+                        @lDel
+                    </td>
                     <td>@user.EditMan</td>
                     <td>@user.EditDate</td>
+                    <td class="text-center">
+                        @Html.ActionLink("编辑", "Edit", new { p_ID = user.ID }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("删除", "Delete", new { p_ID = user.ID }, new { @class = "btn btn-warning" })
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
 <div>
-    @Html.ActionLink("创建用户", "New", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("创建用户", "New", null, new { @class = "btn btn-success" })
 </div>
 
 

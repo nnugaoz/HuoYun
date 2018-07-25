@@ -34,18 +34,59 @@ namespace HuoYun.Admin.Controllers
         [HttpPost]
         public ActionResult New(UserNewViewModel model)
         {
-
             if (ModelState.IsValid)
             {
-                T_User lNewUser = new T_User();
-                lNewUser.ID = Guid.NewGuid().ToString();
-                lNewUser.CellPhone = model.CellPhone;
-                lNewUser.Password = model.Password;
-                lNewUser.Type = model.Type;
-                lNewUser.Del = false;
-                lNewUser.EditDate = DateTime.Now;
-                lNewUser.EditMan = "Admin";
-                mUserRepository.Save(lNewUser);
+                //判断手机号码是否被注册过
+                T_User lUser = mUserRepository.Users.FirstOrDefault(e => e.CellPhone == model.CellPhone && !e.Del);
+                if (lUser == null)
+                {
+                    T_User lNewUser = new T_User();
+                    lNewUser.ID = Guid.NewGuid().ToString();
+                    lNewUser.CellPhone = model.CellPhone;
+                    lNewUser.Password = model.Password;
+                    lNewUser.Type = model.Type;
+                    lNewUser.Del = false;
+                    lNewUser.EditDate = DateTime.Now;
+                    lNewUser.EditMan = "Admin";
+                    mUserRepository.Save(lNewUser);
+                    return RedirectToAction("List");
+                }
+                else
+                {
+                    ModelState.AddModelError("CellPhone", "该手机号已被注册过，请更换号码注册");
+                    return View(model);
+                }
+            }
+            else
+            {
+                return View(model);
+            }
+        }
+
+        public ActionResult Edit(String p_ID)
+        {
+            var lUser = mUserRepository.Users.FirstOrDefault(e => e.ID == p_ID);
+            if (lUser != null)
+            {
+                return View(lUser);
+            }
+            else
+            {
+                return RedirectToAction("List");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Edit(T_User model)
+        {
+            if (ModelState.IsValid)
+            {
+                var lUser = mUserRepository.Users.FirstOrDefault(e => e.ID == model.ID);
+                if (lUser != null)
+                {
+                    lUser.Type = model.Type;
+                    mUserRepository.Save(lUser);
+                }
                 return RedirectToAction("List");
             }
             else
@@ -53,5 +94,12 @@ namespace HuoYun.Admin.Controllers
                 return View(model);
             }
         }
+
+        public ActionResult Delete(String p_ID)
+        {
+            mUserRepository.Delete(p_ID);
+            return RedirectToAction("List");
+        }
+
     }
 }

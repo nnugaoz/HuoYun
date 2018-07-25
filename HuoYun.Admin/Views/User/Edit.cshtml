@@ -1,29 +1,18 @@
-﻿@using HuoYun.Admin.Models
-@model UserNewViewModel
+﻿@using HuoYun.Domain.Entities
+@model T_User
 
 @{
-    ViewBag.Title = "New";
+    ViewBag.Title = "Edit";
 }
 
-<h3>创建新用户</h3>
+<h3>编辑用户</h3>
 @using (Html.BeginForm())
 {
+    @Html.Hidden("ID",Model.ID);
     <div class="form-group">
         <label class="control-label">手机号码</label>
-        @Html.TextBoxFor(e => e.CellPhone, new { @class = "form-control" })
+        @Html.TextBoxFor(e => e.CellPhone, new { @class = "form-control readonly"})
         @Html.ValidationMessageFor(e => e.CellPhone)
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">密码</label>
-        @Html.PasswordFor(e => e.Password, new { @class = "form-control" })
-        @Html.ValidationMessageFor(e => e.Password)
-    </div>
-
-    <div class="form-group">
-        <label class="control-label">确认密码</label>
-        @Html.PasswordFor(e => e.PasswordConfirm, new { @class = "form-control" })
-        @Html.ValidationMessageFor(e => e.PasswordConfirm)
     </div>
 
     <div class="form-group">
