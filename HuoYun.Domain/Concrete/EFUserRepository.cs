@@ -1,5 +1,4 @@
 ﻿using HuoYun.Domain.Abstract;
-using HuoYun.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +9,20 @@ namespace HuoYun.Domain.Concrete
 {
     public class EFUserRepository : IUserRepository
     {
-        EFDbContext context = new EFDbContext();
+        HuoYunEntities context = new HuoYunEntities();
 
         public IEnumerable<T_User> Users
         {
             get
             {
-                return context.Users;
+                return context.T_User;
             }
         }
 
 
         public void Save(T_User p_User)
         {
-            T_User lUser = context.Users.FirstOrDefault(e => e.ID == p_User.ID);
+            T_User lUser = context.T_User.FirstOrDefault(e => e.ID == p_User.ID);
 
             if (lUser != null)
             {
@@ -35,7 +34,7 @@ namespace HuoYun.Domain.Concrete
             }
             else
             {
-                context.Users.Add(p_User);
+                context.T_User.Add(p_User);
             }
             context.SaveChanges();
         }
@@ -43,11 +42,11 @@ namespace HuoYun.Domain.Concrete
 
         public void Delete(string p_ID)
         {
-            T_User lUser = context.Users.FirstOrDefault(e => e.ID == p_ID);
+            T_User lUser = context.T_User.FirstOrDefault(e => e.ID == p_ID);
 
             if (lUser != null)
             {
-                context.Users.Remove(lUser);
+                context.T_User.Remove(lUser);
             }
             context.SaveChanges();
         }

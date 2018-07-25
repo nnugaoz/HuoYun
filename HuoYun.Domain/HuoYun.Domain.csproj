@@ -41,6 +41,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,17 +54,75 @@
     <Compile Include="Abstract\IDriverRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\EFCargoOwnerRepository.cs" />
-    <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFDriverRepository.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
-    <Compile Include="Entities\T_CargoOwner.cs" />
-    <Compile Include="Entities\T_Driver.cs" />
-    <Compile Include="Entities\T_User.cs" />
+    <Compile Include="Concrete\HuoYunDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HuoYunDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\HuoYunDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\HuoYunDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HuoYunDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\T_CarFactory.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\T_CargoOwner.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\T_CarResources.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\T_Dictionary.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\T_Driver.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\T_GoodsResources.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\T_LeadTheWay.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\T_User.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Concrete\HuoYunDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HuoYunDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Concrete\HuoYunDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HuoYunDB.edmx</DependentUpon>
+      <LastGenOutput>HuoYunDB.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Concrete\HuoYunDB.edmx.diagram">
+      <DependentUpon>HuoYunDB.edmx</DependentUpon>
+    </None>
+    <None Include="Concrete\HuoYunDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HuoYunDB.edmx</DependentUpon>
+      <LastGenOutput>HuoYunDB.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

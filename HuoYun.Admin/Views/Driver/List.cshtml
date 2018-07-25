@@ -1,75 +1,61 @@
-﻿@using HuoYun.Domain.Entities
-@model IEnumerable<T_Driver>
+﻿@using HuoYun.Domain.Concrete
+@model IEnumerable<T_User>
 
 @{
     ViewBag.Title = "List";
 }
 <h3>
-    用户列表
+    车主列表 @Model.Count()
 </h3>
 <div>
     <table class="table table-striped table-bordered table-hover table-hover">
         <thead>
             <tr>
-                <td class="text-center">编码</td>
+                <td class="text-center">手机号码</td>
                 <td class="text-center">姓名</td>
-                <td class="text-center">微信号</td>
-                <td class="text-center">身份证号码</td>
                 <td class="text-center">车辆品牌</td>
                 <td class="text-center">车辆类型</td>
-                <td class="text-center">出厂年份</td>
-                <td class="text-center">车牌号码</td>
                 <td class="text-center">车长</td>
                 <td class="text-center">载重</td>
                 <td class="text-center">认证状态</td>
-                <td class="text-center">押金金额</td>
-                <td class="text-center">是否删除</td>
-                <td class="text-center">编辑人</td>
-                <td class="text-center">编辑时间</td>
                 <td class="text-center"></td>
             </tr>
         </thead>
         <tbody>
-            @foreach (var driver in Model)
+            @foreach (var user in Model)
             {
                 <tr>
-                    <td>@driver.ID</td>
-                    <td>@driver.Name</td>
-                    <td>@driver.Wx</td>
-                    <td>@driver.IDCardNo</td>
-                    <td>@driver.CarBrandID</td>
-                    <td>@driver.CarTypeID</td>
-                    <td>@driver.MYear</td>
-                    <td>@driver.CarNo</td>
-                    <td>@driver.CarLen</td>
-                    <td>@driver.CardLoad</td>
-                    <td>@driver.Authenticated</td>
-                    <td>@driver.Deposit</td>
-
-                    <td>
-                        @{
-                string lDel = "";
-                if (driver.Del)
-                {
-                    lDel = "是";
-                }
-                else
-                {
-                    lDel = "否";
-                }
+                    @if (user.T_Driver.Count() > 0)
+                    {
+                        foreach (var driver in user.T_Driver)
+                        {
+                            <td>@user.CellPhone</td>
+                            <td>@driver.Name</td>
+                            <td>@driver.CarBrandID</td>
+                            <td>@driver.CarTypeID</td>
+                            <td>@driver.MYear</td>
+                            <td>@driver.CarNo</td>
+                            <td>@driver.Authenticated</td>
+                            <td class="text-center">
+                                @Html.ActionLink("编辑", "Edit", new { p_UserID = user.ID }, new { @class = "btn btn-info" })
+                            </td>
                         }
-                        @lDel
-                    </td>
-                    <td>@driver.EditMan</td>
-                    <td>@driver.EditDate</td>
-                    <td class="text-center">
-                        @Html.ActionLink("编辑", "Edit", new { p_ID = driver.ID }, new { @class = "btn btn-info" })
-                        @Html.ActionLink("删除", "Delete", new { p_ID = driver.ID }, new { @class = "btn btn-warning" })
-                    </td>
+                    }
+                    else
+                    {
+                        <td>@user.CellPhone</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center">
+                            @Html.ActionLink("编辑", "Edit", new { p_UserID = user.ID }, new { @class = "btn btn-info" })
+                        </td>
+                    }
                 </tr>
             }
         </tbody>
     </table>
 </div>
-
-

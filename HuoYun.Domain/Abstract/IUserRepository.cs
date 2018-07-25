@@ -1,4 +1,4 @@
-﻿using HuoYun.Domain.Entities;
+﻿using HuoYun.Domain.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;

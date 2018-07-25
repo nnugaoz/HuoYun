@@ -134,6 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NInjectDependencyResolver.cs" />
+    <Compile Include="Models\DriverListViewModel.cs" />
     <Compile Include="Models\UserListViewModel.cs" />
     <Compile Include="Models\UserNewViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,6 +145,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Driver\List.cshtml" />
     <Content Include="Views\CargoOwner\List.cshtml" />
+    <Content Include="Views\Driver\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

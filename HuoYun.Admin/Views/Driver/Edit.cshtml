@@ -1,0 +1,101 @@
+﻿@using HuoYun.Domain.Concrete
+@model T_User
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>编辑车主信息</h2>
+@using (Html.BeginForm("Edit", "Driver", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+
+        <label class="control-label col-md-2">注册手机号</label>
+        <div class="col-md-2">
+            @Html.TextBox("CellPhone", null, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">姓名</label>
+        @Html.TextBox("Name", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group col-md-4">
+        <label class="control-label">微信号</label>
+        @Html.TextBox("Wx", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group col-md-4">
+        <label class="control-label">身份证号码</label>
+        @Html.TextBox("IDCardNo", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">上传身份证照片</label>
+        <input name="IDCardImg" type="file" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">上传头像</label>
+        <input name="HeadImg" type="file" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">车辆品牌</label>
+        @Html.TextBox("CarBrandID", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">车辆类型</label>
+        @Html.TextBox("CarTypeID", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">出厂年份</label>
+        @Html.TextBox("MYear", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">车牌号码</label>
+        @Html.TextBox("CarNo", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">车长</label>
+        @Html.TextBox("CarLen", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">载重</label>
+        @Html.TextBox("CardLoad", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">上传车辆照片</label>
+        <input name="CarImg" type="file" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">上传驾驶证照片</label>
+        <input name="DRImg" type="file" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">上传车辆行驶证照片</label>
+        <input name="DLImg" type="file" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">认证状态</label>
+        @Html.TextBox("Authenticated", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">押金</label>
+        @Html.TextBox("Deposit", null, new { @class = "form-control" })
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="保存" />
+}
+
