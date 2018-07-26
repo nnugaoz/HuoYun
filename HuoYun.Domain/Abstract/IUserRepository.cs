@@ -13,6 +13,8 @@ namespace HuoYun.Domain.Abstract
 
         void Save(T_User p_User);
 
+        void SaveDriver(T_User p_User);
+
         void Delete(string p_ID);
     }
 }

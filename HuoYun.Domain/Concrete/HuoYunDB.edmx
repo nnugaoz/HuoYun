@@ -91,17 +91,17 @@
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Wx" Type="varchar" MaxLength="50" />
           <Property Name="IDCardNo" Type="varchar" MaxLength="50" />
-          <Property Name="HeadImg" Type="varbinary(max)" />
-          <Property Name="IDCardImg" Type="varbinary(max)" />
-          <Property Name="DRImg" Type="varbinary(max)" />
+          <Property Name="HeadImgPath" Type="varchar" MaxLength="200" />
+          <Property Name="IDCardImgPath" Type="varchar" MaxLength="200" />
+          <Property Name="DRImgPath" Type="varchar" MaxLength="200" />
           <Property Name="CarBrandID" Type="varchar" MaxLength="50" />
           <Property Name="CarTypeID" Type="varchar" MaxLength="50" />
           <Property Name="MYear" Type="datetime" />
           <Property Name="CarNo" Type="varchar" MaxLength="50" />
           <Property Name="CarLen" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="CardLoad" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="CarImg" Type="varbinary(max)" />
-          <Property Name="DLImg" Type="varbinary(max)" />
+          <Property Name="CarLoad" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CarImgPath" Type="varchar" MaxLength="200" />
+          <Property Name="DLImgPath" Type="varchar" MaxLength="200" />
           <Property Name="Authenticated" Type="int" />
           <Property Name="Deposit" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Del" Type="bit" Nullable="false" />
@@ -284,23 +284,23 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Wx" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IDCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HeadImg" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IDCardImg" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="DRImg" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="CarBrandID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CarTypeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MYear" Type="DateTime" Precision="3" />
           <Property Name="CarNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CarLen" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="CardLoad" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="CarImg" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="DLImg" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Authenticated" Type="Int32" />
           <Property Name="Deposit" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Del" Type="Boolean" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="T_User" Relationship="HuoYunModel.FK_T_Driver_T_User" FromRole="T_Driver" ToRole="T_User" />
+          <Property Name="CarLoad" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="HeadImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IDCardImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DRImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CarImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DLImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="T_GoodsResources">
           <Key>
@@ -479,22 +479,22 @@
           <EntitySetMapping Name="T_Driver">
             <EntityTypeMapping TypeName="HuoYunModel.T_Driver">
               <MappingFragment StoreEntitySet="T_Driver">
+                <ScalarProperty Name="DLImgPath" ColumnName="DLImgPath" />
+                <ScalarProperty Name="CarImgPath" ColumnName="CarImgPath" />
+                <ScalarProperty Name="DRImgPath" ColumnName="DRImgPath" />
+                <ScalarProperty Name="IDCardImgPath" ColumnName="IDCardImgPath" />
+                <ScalarProperty Name="HeadImgPath" ColumnName="HeadImgPath" />
+                <ScalarProperty Name="CarLoad" ColumnName="CarLoad" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Wx" ColumnName="Wx" />
                 <ScalarProperty Name="IDCardNo" ColumnName="IDCardNo" />
-                <ScalarProperty Name="HeadImg" ColumnName="HeadImg" />
-                <ScalarProperty Name="IDCardImg" ColumnName="IDCardImg" />
-                <ScalarProperty Name="DRImg" ColumnName="DRImg" />
                 <ScalarProperty Name="CarBrandID" ColumnName="CarBrandID" />
                 <ScalarProperty Name="CarTypeID" ColumnName="CarTypeID" />
                 <ScalarProperty Name="MYear" ColumnName="MYear" />
                 <ScalarProperty Name="CarNo" ColumnName="CarNo" />
                 <ScalarProperty Name="CarLen" ColumnName="CarLen" />
-                <ScalarProperty Name="CardLoad" ColumnName="CardLoad" />
-                <ScalarProperty Name="CarImg" ColumnName="CarImg" />
-                <ScalarProperty Name="DLImg" ColumnName="DLImg" />
                 <ScalarProperty Name="Authenticated" ColumnName="Authenticated" />
                 <ScalarProperty Name="Deposit" ColumnName="Deposit" />
                 <ScalarProperty Name="Del" ColumnName="Del" />

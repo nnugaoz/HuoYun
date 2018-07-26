@@ -142,6 +142,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NInjectDependencyResolver.cs" />
+    <Compile Include="Models\DriverIndexViewModel.cs" />
     <Compile Include="Models\DriverListViewModel.cs" />
     <Compile Include="Models\UserListViewModel.cs" />
     <Compile Include="Models\UserNewViewModel.cs" />

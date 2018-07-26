@@ -6,30 +6,37 @@
 }
 
 <h2>编辑车主信息</h2>
-@using (Html.BeginForm("Edit", "Driver", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Edit", "Driver", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
+    @Html.HiddenFor(e => e.ID);
     <div class="form-group">
-
         <label class="control-label col-md-2">注册手机号</label>
         <div class="col-md-2">
             @Html.TextBox("CellPhone", null, new { @class = "form-control", @readonly = "readonly" })
         </div>
+    </div>
 
+    for (var i = 0; i < Model.T_Driver.Count; i++)
+    {
+        @Html.HiddenFor(e => e.T_Driver.ElementAt(i).ID, new { @Name = string.Format("T_Driver[{0}].ID", i) });
+    @Html.HiddenFor(e => e.T_Driver.ElementAt(i).UID, new { @Name = string.Format("T_Driver[{0}].UID", i) });
+    <div class="form-group">
         <label class="control-label col-md-2">姓名</label>
         <div class="col-md-2">
-            @Html.TextBox("Name", null, new { @class = "form-control" })
+            @*@Html.TextBox("[" + i + "].Name", Model.T_Driver.ElementAt(i).Name, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).Name, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].Name", i) })
         </div>
 
         <label class="control-label col-md-2">微信号</label>
         <div class="col-md-2">
-            @Html.TextBox("Wx", null, new { @class = "form-control" })
+            @*@Html.TextBox("[" + i + "].Wx", Model.T_Driver.ElementAt(i).Wx, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).Wx, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].Wx", i) })
         </div>
-    </div>
 
-    <div class="form-group">
         <label class="control-label col-md-2">身份证号码</label>
         <div class="col-md-2">
-            @Html.TextBox("IDCardNo", null, new { @class = "form-control " })
+            @*@Html.TextBox("[" + i + "].IDCardNo", Model.T_Driver.ElementAt(i).IDCardNo, new { @class = "form-control " })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).IDCardNo, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].IDCardNo", i) })
         </div>
     </div>
 
@@ -39,44 +46,50 @@
         </a>
         <div class="col-md-2">
             <input name="IDCardImg" type="file" id="IDCardImg" style="display:none" />
-            <img class="img-thumbnail" id="imgIDCardImg" name="imgIDCardImg" style="width:100px;height:100px;" />
+            <img class="img-thumbnail" id="imgIDCardImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "Driver", new { p_FilePath = Model.T_Driver.ElementAt(i).IDCardImgPath })" />
         </div>
         <a href="#" onclick="javascript: void (0);">
             <label for="HeadImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传头像</label>
         </a>
         <div class="col-md-2">
             <input name="HeadImg" type="file" id="HeadImg" style="display:none" />
-            <img class="img-thumbnail" id="imgHeadImg" name="imgHeadImg" style="width:100px;height:100px;" />
+            <img class="img-thumbnail" id="imgHeadImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "Driver", new { p_FilePath = Model.T_Driver.ElementAt(i).HeadImgPath })" />
         </div>
     </div>
 
     <div class="form-group">
         <label class="control-label col-md-2">车辆品牌</label>
         <div class="col-md-2">
-            @Html.TextBox("CarBrandID", null, new { @class = "form-control" })
+            @*@Html.TextBox("[" + i + "].CarBrandID", Model.T_Driver.ElementAt(i).CarBrandID, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).CarBrandID, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].CarBrandID", i) })
         </div>
         <label class="control-label col-md-2">车辆类型</label>
         <div class="col-md-2">
-            @Html.TextBox("CarTypeID", null, new { @class = "form-control" })
+            @*@Html.TextBox("[" + i + "].CarTypeID", Model.T_Driver.ElementAt(i).CarTypeID, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).CarTypeID, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].CarTypeID", i) })
         </div>
         <label class="control-label col-md-2">出厂年份</label>
         <div class="col-md-2">
-            @Html.TextBox("MYear", null, new { @class = "form-control" })
+            @*@Html.TextBox("[" + i + "].MYear", Model.T_Driver.ElementAt(i).MYear, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).MYear, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].MYear", i) })
         </div>
     </div>
 
     <div class="form-group">
         <label class="control-label col-md-2">车牌号码</label>
         <div class="col-md-2">
-            @Html.TextBox("CarNo", null, new { @class = "form-control" })
+            @*@Html.TextBox("[" + i + "].CarNo", Model.T_Driver.ElementAt(i).CarNo, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).CarNo, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].CarNo", i) })
         </div>
         <label class="control-label col-md-2">车长</label>
         <div class="col-md-2">
-            @Html.TextBox("CarLen", null, new { @class = "form-control" })
+            @*@Html.TextBox("[" + i + "].CarLen", Model.T_Driver.ElementAt(i).CarLen, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).CarLen, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].CarLen", i) })
         </div>
         <label class="control-label col-md-2">载重</label>
         <div class="col-md-2">
-            @Html.TextBox("CardLoad", null, new { @class = "form-control" })
+            @*@Html.TextBox("[" + i + "].CarLoad", Model.T_Driver.ElementAt(i).CarLoad, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).CarLoad, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].CarLoad", i) })
         </div>
     </div>
 
@@ -86,35 +99,37 @@
         </a>
         <div class="col-md-2">
             <input name="CarImg" type="file" id="CarImg" style="display:none" />
-            <img class="img-thumbnail" id="imgCarImg" name="imgCarImg" style="width:100px;height:100px;" />
+            <img class="img-thumbnail" id="imgCarImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "Driver", new { p_FilePath = Model.T_Driver.ElementAt(i).CarImgPath })" />
         </div>
         <a href="#" onclick="javascript: void (0);">
             <label for="DRImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传驾驶证照片</label>
         </a>
         <div class="col-md-2">
             <input name="DRImg" type="file" id="DRImg" style="display:none" />
-            <img class="img-thumbnail" id="imgDRImg" name="imgDRImg" style="width:100px;height:100px;" />
+            <img class="img-thumbnail" id="imgDRImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "Driver", new { p_FilePath = Model.T_Driver.ElementAt(i).DRImgPath })" />
         </div>
         <a href="#" onclick="javascript: void (0);">
             <label for="DLImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传车辆行驶证照片</label>
         </a>
         <div class="col-md-2">
             <input name="DLImg" type="file" id="DLImg" style="display:none" />
-            <img class="img-thumbnail" id="imgDLImg" name="imgDLImg" style="width:100px;height:100px;" />
+            <img class="img-thumbnail" id="imgDLImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "Driver", new { p_FilePath = Model.T_Driver.ElementAt(i).DLImgPath })" />
         </div>
     </div>
 
     <div class="form-group">
         <label class="control-label col-md-2">认证状态</label>
         <div class="col-md-2">
-            @Html.TextBox("Authenticated", null, new { @class = "form-control" })
+            @*@Html.TextBox("[" + i + "].Authenticated", Model.T_Driver.ElementAt(i).Authenticated, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).Authenticated, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].Authenticated", i) })
         </div>
         <label class="control-label col-md-2">押金</label>
         <div class="col-md-2">
-            @Html.TextBox("Deposit", null, new { @class = "form-control", })
+            @*@Html.TextBox("[" + i + "].Deposit", Model.T_Driver.ElementAt(i).Deposit, new { @class = "form-control", })*@
+            @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).Deposit, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].Deposit", i) })
         </div>
     </div>
-
+    }
     <input type="submit" class="btn btn-primary" value="保存" />
 }
 

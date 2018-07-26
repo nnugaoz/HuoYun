@@ -19,22 +19,22 @@ namespace HuoYun.Domain.Concrete
         public string Name { get; set; }
         public string Wx { get; set; }
         public string IDCardNo { get; set; }
-        public byte[] HeadImg { get; set; }
-        public byte[] IDCardImg { get; set; }
-        public byte[] DRImg { get; set; }
         public string CarBrandID { get; set; }
         public string CarTypeID { get; set; }
         public Nullable<System.DateTime> MYear { get; set; }
         public string CarNo { get; set; }
         public Nullable<decimal> CarLen { get; set; }
-        public Nullable<decimal> CardLoad { get; set; }
-        public byte[] CarImg { get; set; }
-        public byte[] DLImg { get; set; }
         public Nullable<int> Authenticated { get; set; }
         public Nullable<decimal> Deposit { get; set; }
         public bool Del { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditMan { get; set; }
+        public Nullable<decimal> CarLoad { get; set; }
+        public string HeadImgPath { get; set; }
+        public string IDCardImgPath { get; set; }
+        public string DRImgPath { get; set; }
+        public string CarImgPath { get; set; }
+        public string DLImgPath { get; set; }
     
         public virtual T_User T_User { get; set; }
     }
