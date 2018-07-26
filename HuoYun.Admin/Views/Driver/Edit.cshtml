@@ -41,6 +41,7 @@
     </div>
 
     <div class="form-group">
+        @Html.HiddenFor(e => e.T_Driver.ElementAt(i).IDCardImgPath, new { @Name = string.Format("T_Driver[{0}].IDCardImgPath", i) })
         <a href="#" onclick="javascript: void (0);">
             <label for="IDCardImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传身份证照片</label>
         </a>
@@ -48,6 +49,7 @@
             <input name="IDCardImg" type="file" id="IDCardImg" style="display:none" />
             <img class="img-thumbnail" id="imgIDCardImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "Driver", new { p_FilePath = Model.T_Driver.ElementAt(i).IDCardImgPath })" />
         </div>
+        @Html.HiddenFor(e => e.T_Driver.ElementAt(i).HeadImgPath, new { @Name = string.Format("T_Driver[{0}].HeadImgPath", i) })
         <a href="#" onclick="javascript: void (0);">
             <label for="HeadImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传头像</label>
         </a>
@@ -68,11 +70,13 @@
             @*@Html.TextBox("[" + i + "].CarTypeID", Model.T_Driver.ElementAt(i).CarTypeID, new { @class = "form-control" })*@
             @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).CarTypeID, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].CarTypeID", i) })
         </div>
-        <label class="control-label col-md-2">出厂年份</label>
-        <div class="col-md-2">
+        <label for="dtp_input2" class="control-label col-md-2">出厂年份</label>
+        <div class="input-group col-md-2 date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
             @*@Html.TextBox("[" + i + "].MYear", Model.T_Driver.ElementAt(i).MYear, new { @class = "form-control" })*@
             @Html.TextBoxFor(e => e.T_Driver.ElementAt(i).MYear, new { @class = "form-control", @Name = string.Format("T_Driver[{0}].MYear", i) })
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
         </div>
+        <input type="hidden" id="dtp_input2" value="" />
     </div>
 
     <div class="form-group">
@@ -94,6 +98,7 @@
     </div>
 
     <div class="form-group">
+        @Html.HiddenFor(e => e.T_Driver.ElementAt(i).CarImgPath, new { @Name = string.Format("T_Driver[{0}].CarImgPath", i) })
         <a href="#" onclick="javascript: void (0);">
             <label for="CarImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传车辆照片</label>
         </a>
@@ -101,6 +106,7 @@
             <input name="CarImg" type="file" id="CarImg" style="display:none" />
             <img class="img-thumbnail" id="imgCarImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "Driver", new { p_FilePath = Model.T_Driver.ElementAt(i).CarImgPath })" />
         </div>
+        @Html.HiddenFor(e => e.T_Driver.ElementAt(i).DRImgPath, new { @Name = string.Format("T_Driver[{0}].DRImgPath", i) })
         <a href="#" onclick="javascript: void (0);">
             <label for="DRImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传驾驶证照片</label>
         </a>
@@ -108,6 +114,7 @@
             <input name="DRImg" type="file" id="DRImg" style="display:none" />
             <img class="img-thumbnail" id="imgDRImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "Driver", new { p_FilePath = Model.T_Driver.ElementAt(i).DRImgPath })" />
         </div>
+        @Html.HiddenFor(e => e.T_Driver.ElementAt(i).DLImgPath, new { @Name = string.Format("T_Driver[{0}].DLImgPath", i) })
         <a href="#" onclick="javascript: void (0);">
             <label for="DLImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传车辆行驶证照片</label>
         </a>
@@ -150,6 +157,16 @@
         showImage($('#CarImg')[0], $('#imgCarImg')[0]);
         showImage($('#DRImg')[0], $('#imgDRImg')[0]);
         showImage($('#DLImg')[0], $('#imgDLImg')[0]);
+        $('.form_date').datetimepicker({
+            language:"cn",
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
     });
 
 </script>
