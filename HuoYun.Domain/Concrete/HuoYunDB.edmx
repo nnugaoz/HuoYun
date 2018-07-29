@@ -27,27 +27,6 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditMan" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="T_CargoOwner">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UID" Type="varchar" MaxLength="50" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="Wx" Type="varchar" MaxLength="50" />
-          <Property Name="IDCardNo" Type="varchar" MaxLength="50" />
-          <Property Name="HeadImg" Type="varbinary(max)" />
-          <Property Name="IDCardImg" Type="varbinary(max)" />
-          <Property Name="ComName" Type="varchar" MaxLength="200" />
-          <Property Name="ComAreaID" Type="varchar" MaxLength="50" />
-          <Property Name="ComAddr" Type="varchar" MaxLength="200" />
-          <Property Name="BLImg" Type="varbinary(max)" />
-          <Property Name="Authenticated" Type="int" />
-          <Property Name="Deposit" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Del" Type="bit" />
-          <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditMan" Type="varchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="T_CarResources">
           <Key>
             <PropertyRef Name="ID" />
@@ -82,14 +61,13 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditMan" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="T_Driver">
+        <EntityType Name="T_DriverOwner">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UID" Type="varchar" MaxLength="50" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
-          <Property Name="Wx" Type="varchar" MaxLength="50" />
           <Property Name="IDCardNo" Type="varchar" MaxLength="50" />
           <Property Name="HeadImgPath" Type="varchar" MaxLength="200" />
           <Property Name="IDCardImgPath" Type="varchar" MaxLength="200" />
@@ -99,11 +77,14 @@
           <Property Name="MYear" Type="datetime" />
           <Property Name="CarNo" Type="varchar" MaxLength="50" />
           <Property Name="CarLen" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="CarLoad" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="CarLoad" Type="decimal" Precision="18" Scale="2" />
           <Property Name="CarImgPath" Type="varchar" MaxLength="200" />
           <Property Name="DLImgPath" Type="varchar" MaxLength="200" />
-          <Property Name="Authenticated" Type="int" />
-          <Property Name="Deposit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ComName" Type="varchar" MaxLength="200" />
+          <Property Name="ComAreaID" Type="varchar" MaxLength="50" />
+          <Property Name="ComAddr" Type="varchar" MaxLength="200" />
+          <Property Name="BLImgPath" Type="varchar" MaxLength="200" />
+          <Property Name="Auth" Type="int" />
           <Property Name="Del" Type="bit" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditMan" Type="varchar" MaxLength="50" />
@@ -164,34 +145,34 @@
           <Property Name="CellPhone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="Deposit" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Del" Type="bit" Nullable="false" />
           <Property Name="EditDate" Type="datetime" Nullable="false" />
           <Property Name="EditMan" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_T_Driver_T_User">
           <End Role="T_User" Type="Self.T_User" Multiplicity="0..1" />
-          <End Role="T_Driver" Type="Self.T_Driver" Multiplicity="*" />
+          <End Role="T_DriverOwner" Type="Self.T_DriverOwner" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="T_User">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="T_Driver">
+            <Dependent Role="T_DriverOwner">
               <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HuoYunModelStoreContainer">
           <EntitySet Name="T_CarFactory" EntityType="Self.T_CarFactory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_CargoOwner" EntityType="Self.T_CargoOwner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_CarResources" EntityType="Self.T_CarResources" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_Dictionary" EntityType="Self.T_Dictionary" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_Driver" EntityType="Self.T_Driver" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_DriverOwner" EntityType="Self.T_DriverOwner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_GoodsResources" EntityType="Self.T_GoodsResources" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_LeadTheWay" EntityType="Self.T_LeadTheWay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="T_User" EntityType="Self.T_User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_T_Driver_T_User" Association="Self.FK_T_Driver_T_User">
             <End Role="T_User" EntitySet="T_User" />
-            <End Role="T_Driver" EntitySet="T_Driver" />
+            <End Role="T_DriverOwner" EntitySet="T_DriverOwner" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -216,27 +197,6 @@
           <Property Name="Img7" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Img8" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Img9" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Del" Type="Boolean" />
-          <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="T_CargoOwner">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Wx" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IDCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HeadImg" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IDCardImg" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="ComName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ComAreaID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ComAddr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="BLImg" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Authenticated" Type="Int32" />
-          <Property Name="Deposit" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Del" Type="Boolean" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -274,33 +234,6 @@
           <Property Name="Del" Type="Boolean" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="T_Driver">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Wx" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IDCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CarBrandID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CarTypeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MYear" Type="DateTime" Precision="3" />
-          <Property Name="CarNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CarLen" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Authenticated" Type="Int32" />
-          <Property Name="Deposit" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Del" Type="Boolean" Nullable="false" />
-          <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="T_User" Relationship="HuoYunModel.FK_T_Driver_T_User" FromRole="T_Driver" ToRole="T_User" />
-          <Property Name="CarLoad" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="HeadImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="IDCardImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="DRImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="CarImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="DLImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="T_GoodsResources">
           <Key>
@@ -361,30 +294,59 @@
           <Property Name="Del" Type="Boolean" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="T_Driver" Relationship="HuoYunModel.FK_T_Driver_T_User" FromRole="T_User" ToRole="T_Driver" />
+          <Property Name="Deposit" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="T_DriverOwner" Relationship="HuoYunModel.FK_T_Driver_T_User1" FromRole="T_User" ToRole="T_DriverOwner" />
         </EntityType>
         <EntityContainer Name="HuoYunEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="T_CarFactory" EntityType="Self.T_CarFactory" />
-          <EntitySet Name="T_CargoOwner" EntityType="Self.T_CargoOwner" />
           <EntitySet Name="T_CarResources" EntityType="Self.T_CarResources" />
           <EntitySet Name="T_Dictionary" EntityType="Self.T_Dictionary" />
-          <EntitySet Name="T_Driver" EntityType="Self.T_Driver" />
           <EntitySet Name="T_GoodsResources" EntityType="Self.T_GoodsResources" />
           <EntitySet Name="T_LeadTheWay" EntityType="Self.T_LeadTheWay" />
           <EntitySet Name="T_User" EntityType="Self.T_User" />
-          <AssociationSet Name="FK_T_Driver_T_User" Association="HuoYunModel.FK_T_Driver_T_User">
+          <EntitySet Name="T_DriverOwner" EntityType="HuoYunModel.T_DriverOwner" />
+          <AssociationSet Name="FK_T_Driver_T_User1" Association="HuoYunModel.FK_T_Driver_T_User1">
             <End Role="T_User" EntitySet="T_User" />
-            <End Role="T_Driver" EntitySet="T_Driver" />
+            <End Role="T_DriverOwner" EntitySet="T_DriverOwner" />
           </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_T_Driver_T_User">
+        <EntityType Name="T_DriverOwner">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HeadImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IDCardImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DRImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CarBrandID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CarTypeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MYear" Type="DateTime" Precision="3" />
+          <Property Name="CarNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CarLen" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CarLoad" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CarImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DLImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ComName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ComAreaID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ComAddr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Del" Type="Boolean" Nullable="false" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_User" Relationship="HuoYunModel.FK_T_Driver_T_User1" FromRole="T_DriverOwner" ToRole="T_User" />
+          <Property Name="BLImgPath" Type="String" />
+          <Property Name="Auth" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_T_Driver_T_User1">
           <End Type="HuoYunModel.T_User" Role="T_User" Multiplicity="0..1" />
-          <End Type="HuoYunModel.T_Driver" Role="T_Driver" Multiplicity="*" />
+          <End Type="HuoYunModel.T_DriverOwner" Role="T_DriverOwner" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="T_User">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="T_Driver">
+            <Dependent Role="T_DriverOwner">
               <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
@@ -412,28 +374,6 @@
                 <ScalarProperty Name="Img7" ColumnName="Img7" />
                 <ScalarProperty Name="Img8" ColumnName="Img8" />
                 <ScalarProperty Name="Img9" ColumnName="Img9" />
-                <ScalarProperty Name="Del" ColumnName="Del" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_CargoOwner">
-            <EntityTypeMapping TypeName="HuoYunModel.T_CargoOwner">
-              <MappingFragment StoreEntitySet="T_CargoOwner">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UID" ColumnName="UID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Wx" ColumnName="Wx" />
-                <ScalarProperty Name="IDCardNo" ColumnName="IDCardNo" />
-                <ScalarProperty Name="HeadImg" ColumnName="HeadImg" />
-                <ScalarProperty Name="IDCardImg" ColumnName="IDCardImg" />
-                <ScalarProperty Name="ComName" ColumnName="ComName" />
-                <ScalarProperty Name="ComAreaID" ColumnName="ComAreaID" />
-                <ScalarProperty Name="ComAddr" ColumnName="ComAddr" />
-                <ScalarProperty Name="BLImg" ColumnName="BLImg" />
-                <ScalarProperty Name="Authenticated" ColumnName="Authenticated" />
-                <ScalarProperty Name="Deposit" ColumnName="Deposit" />
                 <ScalarProperty Name="Del" ColumnName="Del" />
                 <ScalarProperty Name="EditDate" ColumnName="EditDate" />
                 <ScalarProperty Name="EditMan" ColumnName="EditMan" />
@@ -470,33 +410,6 @@
                 <ScalarProperty Name="Spare3" ColumnName="Spare3" />
                 <ScalarProperty Name="Spare4" ColumnName="Spare4" />
                 <ScalarProperty Name="Spare5" ColumnName="Spare5" />
-                <ScalarProperty Name="Del" ColumnName="Del" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_Driver">
-            <EntityTypeMapping TypeName="HuoYunModel.T_Driver">
-              <MappingFragment StoreEntitySet="T_Driver">
-                <ScalarProperty Name="DLImgPath" ColumnName="DLImgPath" />
-                <ScalarProperty Name="CarImgPath" ColumnName="CarImgPath" />
-                <ScalarProperty Name="DRImgPath" ColumnName="DRImgPath" />
-                <ScalarProperty Name="IDCardImgPath" ColumnName="IDCardImgPath" />
-                <ScalarProperty Name="HeadImgPath" ColumnName="HeadImgPath" />
-                <ScalarProperty Name="CarLoad" ColumnName="CarLoad" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UID" ColumnName="UID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Wx" ColumnName="Wx" />
-                <ScalarProperty Name="IDCardNo" ColumnName="IDCardNo" />
-                <ScalarProperty Name="CarBrandID" ColumnName="CarBrandID" />
-                <ScalarProperty Name="CarTypeID" ColumnName="CarTypeID" />
-                <ScalarProperty Name="MYear" ColumnName="MYear" />
-                <ScalarProperty Name="CarNo" ColumnName="CarNo" />
-                <ScalarProperty Name="CarLen" ColumnName="CarLen" />
-                <ScalarProperty Name="Authenticated" ColumnName="Authenticated" />
-                <ScalarProperty Name="Deposit" ColumnName="Deposit" />
                 <ScalarProperty Name="Del" ColumnName="Del" />
                 <ScalarProperty Name="EditDate" ColumnName="EditDate" />
                 <ScalarProperty Name="EditMan" ColumnName="EditMan" />
@@ -556,6 +469,7 @@
           <EntitySetMapping Name="T_User">
             <EntityTypeMapping TypeName="HuoYunModel.T_User">
               <MappingFragment StoreEntitySet="T_User">
+                <ScalarProperty Name="Deposit" ColumnName="Deposit" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -563,6 +477,35 @@
                 <ScalarProperty Name="Del" ColumnName="Del" />
                 <ScalarProperty Name="EditDate" ColumnName="EditDate" />
                 <ScalarProperty Name="EditMan" ColumnName="EditMan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_DriverOwner">
+            <EntityTypeMapping TypeName="HuoYunModel.T_DriverOwner">
+              <MappingFragment StoreEntitySet="T_DriverOwner">
+                <ScalarProperty Name="Auth" ColumnName="Auth" />
+                <ScalarProperty Name="BLImgPath" ColumnName="BLImgPath" />
+                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="Del" ColumnName="Del" />
+                <ScalarProperty Name="ComAddr" ColumnName="ComAddr" />
+                <ScalarProperty Name="ComAreaID" ColumnName="ComAreaID" />
+                <ScalarProperty Name="ComName" ColumnName="ComName" />
+                <ScalarProperty Name="DLImgPath" ColumnName="DLImgPath" />
+                <ScalarProperty Name="CarImgPath" ColumnName="CarImgPath" />
+                <ScalarProperty Name="CarLoad" ColumnName="CarLoad" />
+                <ScalarProperty Name="CarLen" ColumnName="CarLen" />
+                <ScalarProperty Name="CarNo" ColumnName="CarNo" />
+                <ScalarProperty Name="MYear" ColumnName="MYear" />
+                <ScalarProperty Name="CarTypeID" ColumnName="CarTypeID" />
+                <ScalarProperty Name="CarBrandID" ColumnName="CarBrandID" />
+                <ScalarProperty Name="DRImgPath" ColumnName="DRImgPath" />
+                <ScalarProperty Name="IDCardImgPath" ColumnName="IDCardImgPath" />
+                <ScalarProperty Name="HeadImgPath" ColumnName="HeadImgPath" />
+                <ScalarProperty Name="IDCardNo" ColumnName="IDCardNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

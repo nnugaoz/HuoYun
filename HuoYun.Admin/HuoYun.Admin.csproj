@@ -193,8 +193,8 @@
   <ItemGroup>
     <Compile Include="App_Start\Ninject.Web.Common.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\CargoOwnerController.cs" />
-    <Compile Include="Controllers\DriverController.cs" />
+    <Compile Include="Controllers\DistrictController.cs" />
+    <Compile Include="Controllers\DriverOwnerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -212,9 +212,11 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\Driver\List.cshtml" />
-    <Content Include="Views\CargoOwner\List.cshtml" />
-    <Content Include="Views\Driver\Edit.cshtml" />
+    <Content Include="Views\DriverOwner\DriverList.cshtml" />
+    <Content Include="Views\DriverOwner\DriverEdit.cshtml" />
+    <Content Include="Views\DriverOwner\OwnerList.cshtml" />
+    <Content Include="Views\DriverOwner\OwnerEdit.cshtml" />
+    <Content Include="Views\District\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

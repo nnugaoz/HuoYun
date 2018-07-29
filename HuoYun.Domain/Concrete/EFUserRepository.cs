@@ -33,7 +33,6 @@ namespace HuoYun.Domain.Concrete
                     lUser.Type = p_User.Type;
                     lUser.EditDate = p_User.EditDate;
                     lUser.EditMan = p_User.EditMan;
-
                 }
                 else
                 {
@@ -70,19 +69,17 @@ namespace HuoYun.Domain.Concrete
 
         public void SaveDriver(T_User p_User)
         {
-            foreach (var pDriver in p_User.T_Driver)
+            foreach (var pDriver in p_User.T_DriverOwner)
             {
                 if (pDriver.ID == null)
                 {
-                    T_Driver lDriver = new T_Driver
+                    T_DriverOwner lDriver = new T_DriverOwner
                     {
                         ID = Guid.NewGuid().ToString()
                         ,
                         UID = p_User.ID
                         ,
                         Name = pDriver.Name
-                        ,
-                        Wx = pDriver.Wx
                         ,
                         IDCardNo = pDriver.IDCardNo
                         ,
@@ -98,9 +95,7 @@ namespace HuoYun.Domain.Concrete
                         ,
                         CarLoad = pDriver.CarLoad
                         ,
-                        Authenticated = pDriver.Authenticated
-                        ,
-                        Deposit = pDriver.Deposit
+                        Auth = pDriver.Auth
                         ,
                         IDCardImgPath = pDriver.IDCardImgPath
                         ,
@@ -112,15 +107,14 @@ namespace HuoYun.Domain.Concrete
                         ,
                         DLImgPath = pDriver.DLImgPath
                     };
-                    context.T_Driver.Add(lDriver);
+                    context.T_DriverOwner.Add(lDriver);
                 }
                 else
                 {
-                    var lDriver = context.T_Driver.FirstOrDefault(e => e.ID == pDriver.ID);
+                    var lDriver = context.T_DriverOwner.FirstOrDefault(e => e.ID == pDriver.ID);
                     if (lDriver != null)
                     {
                         lDriver.Name = pDriver.Name;
-                        lDriver.Wx = pDriver.Wx;
                         lDriver.IDCardNo = pDriver.IDCardNo;
                         lDriver.CarBrandID = pDriver.CarBrandID;
                         lDriver.CarTypeID = pDriver.CarTypeID;
@@ -128,14 +122,61 @@ namespace HuoYun.Domain.Concrete
                         lDriver.CarNo = pDriver.CarNo;
                         lDriver.CarLen = pDriver.CarLen;
                         lDriver.CarLoad = pDriver.CarLoad;
-                        lDriver.Authenticated = pDriver.Authenticated;
-                        lDriver.Deposit = pDriver.Deposit;
+                        lDriver.Auth = pDriver.Auth;
                         lDriver.IDCardImgPath = pDriver.IDCardImgPath;
                         lDriver.HeadImgPath = pDriver.HeadImgPath;
                         lDriver.CarImgPath = pDriver.CarImgPath;
                         lDriver.DRImgPath = pDriver.DRImgPath;
                         lDriver.DLImgPath = pDriver.DLImgPath;
                     }
+                }
+            }
+            context.SaveChanges();
+        }
+
+
+        public void SaveOwner(T_User p_User)
+        {
+            T_DriverOwner lOwner;
+            T_User lUser = context.T_User.FirstOrDefault(e => e.ID == p_User.ID);
+
+            foreach (var lDriverOwner in p_User.T_DriverOwner)
+            {
+                if (lDriverOwner.ID == "" || lDriverOwner.ID == null)
+                {
+                    //新增
+                    lOwner = new T_DriverOwner();
+                    lOwner.ID = Guid.NewGuid().ToString();
+                    lOwner.Name = lDriverOwner.Name;
+                    lOwner.IDCardNo = lDriverOwner.IDCardNo;
+                    lOwner.IDCardImgPath = lDriverOwner.IDCardImgPath;
+                    lOwner.HeadImgPath = lDriverOwner.HeadImgPath;
+                    lOwner.ComName = lDriverOwner.ComName;
+                    lOwner.ComAreaID = lDriverOwner.ComAreaID;
+                    lOwner.ComAddr = lDriverOwner.ComAddr;
+                    lOwner.BLImgPath = lDriverOwner.BLImgPath;
+                    lOwner.Auth = lDriverOwner.Auth;
+                    lOwner.EditDate = DateTime.Now;
+                    lOwner.EditMan = "Admin";
+                    lOwner.Del = false;
+                    lUser.T_DriverOwner.Add(lOwner);
+                }
+                else
+                {
+                    //更新
+                    lOwner = lUser.T_DriverOwner.FirstOrDefault(e => e.ID == lDriverOwner.ID);
+                    lOwner.Name = lDriverOwner.Name;
+                    lOwner.IDCardNo = lDriverOwner.IDCardNo;
+                    lOwner.IDCardImgPath = lDriverOwner.IDCardImgPath;
+                    lOwner.HeadImgPath = lDriverOwner.HeadImgPath;
+                    lOwner.ComName = lDriverOwner.ComName;
+                    lOwner.ComAreaID = lDriverOwner.ComAreaID;
+                    lOwner.ComAddr = lDriverOwner.ComAddr;
+                    lOwner.BLImgPath = lDriverOwner.BLImgPath;
+                    lOwner.Auth = lDriverOwner.Auth;
+                    lOwner.EditDate = DateTime.Now;
+                    lOwner.EditMan = "Admin";
+                    lOwner.Del = false;
                 }
             }
             context.SaveChanges();

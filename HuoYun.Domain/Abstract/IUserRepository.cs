@@ -16,5 +16,7 @@ namespace HuoYun.Domain.Abstract
         void SaveDriver(T_User p_User);
 
         void Delete(string p_ID);
+
+        void SaveOwner(T_User p_User);
     }
 }

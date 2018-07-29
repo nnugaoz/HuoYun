@@ -1,0 +1,61 @@
+﻿@using HuoYun.Domain.Concrete
+@model IEnumerable<T_User>
+
+@{
+    ViewBag.Title = "List";
+}
+<h3>
+    车主列表
+</h3>
+<div>
+    <table class="table table-striped table-bordered table-hover table-hover">
+        <thead>
+            <tr>
+                <td class="text-center">手机号码</td>
+                <td class="text-center">姓名</td>
+                <td class="text-center">车辆品牌</td>
+                <td class="text-center">车辆类型</td>
+                <td class="text-center">车长</td>
+                <td class="text-center">载重</td>
+                <td class="text-center">认证状态</td>
+                <td class="text-center"></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    @if (user.T_DriverOwner.Count() > 0)
+                    {
+                        foreach (var driver in user.T_DriverOwner)
+                        {
+                            <td>@user.CellPhone</td>
+                            <td>@driver.Name</td>
+                            <td>@driver.CarBrandID</td>
+                            <td>@driver.CarTypeID</td>
+                            <td>@driver.CarLen</td>
+                            <td>@driver.CarLoad</td>
+                            <td>@driver.Auth</td>
+                            <td class="text-center">
+                                @Html.ActionLink("编辑", "DriverEdit", "DriverOwner", new { p_UserID = user.ID }, new { @class = "btn btn-info" })
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                        <td>@user.CellPhone</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-center">
+                            @Html.ActionLink("编辑", "DriverEdit", "DriverOwner", new { p_UserID = user.ID }, new { @class = "btn btn-info" })
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

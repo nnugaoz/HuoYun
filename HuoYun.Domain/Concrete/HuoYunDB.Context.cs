@@ -26,12 +26,11 @@ namespace HuoYun.Domain.Concrete
         }
     
         public virtual DbSet<T_CarFactory> T_CarFactory { get; set; }
-        public virtual DbSet<T_CargoOwner> T_CargoOwner { get; set; }
         public virtual DbSet<T_CarResources> T_CarResources { get; set; }
         public virtual DbSet<T_Dictionary> T_Dictionary { get; set; }
-        public virtual DbSet<T_Driver> T_Driver { get; set; }
         public virtual DbSet<T_GoodsResources> T_GoodsResources { get; set; }
         public virtual DbSet<T_LeadTheWay> T_LeadTheWay { get; set; }
         public virtual DbSet<T_User> T_User { get; set; }
+        public virtual DbSet<T_DriverOwner> T_DriverOwner { get; set; }
     }
 }

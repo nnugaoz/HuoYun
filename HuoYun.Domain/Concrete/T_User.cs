@@ -16,7 +16,7 @@ namespace HuoYun.Domain.Concrete
     {
         public T_User()
         {
-            this.T_Driver = new HashSet<T_Driver>();
+            this.T_DriverOwner = new HashSet<T_DriverOwner>();
         }
     
         public string ID { get; set; }
@@ -26,7 +26,8 @@ namespace HuoYun.Domain.Concrete
         public bool Del { get; set; }
         public System.DateTime EditDate { get; set; }
         public string EditMan { get; set; }
+        public Nullable<decimal> Deposit { get; set; }
     
-        public virtual ICollection<T_Driver> T_Driver { get; set; }
+        public virtual ICollection<T_DriverOwner> T_DriverOwner { get; set; }
     }
 }

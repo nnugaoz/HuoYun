@@ -10,6 +10,6 @@ namespace HuoYun.Admin.Models
     {
         public T_User User { get; set; }
 
-        public List<T_Driver> Driver { get; set; }
+        public List<T_DriverOwner> Driver { get; set; }
     }
 }

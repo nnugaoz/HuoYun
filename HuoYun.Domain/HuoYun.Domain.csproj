@@ -50,11 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\ICargoOwnerRepository.cs" />
-    <Compile Include="Abstract\IDriverRepository.cs" />
+    <Compile Include="Abstract\IDriverOwnerRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
-    <Compile Include="Concrete\EFCargoOwnerRepository.cs" />
-    <Compile Include="Concrete\EFDriverRepository.cs" />
+    <Compile Include="Concrete\EFDriverOwnerRepository.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
     <Compile Include="Concrete\HuoYunDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -74,16 +72,13 @@
     <Compile Include="Concrete\T_CarFactory.cs">
       <DependentUpon>HuoYunDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Concrete\T_CargoOwner.cs">
-      <DependentUpon>HuoYunDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Concrete\T_CarResources.cs">
       <DependentUpon>HuoYunDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Concrete\T_Dictionary.cs">
       <DependentUpon>HuoYunDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Concrete\T_Driver.cs">
+    <Compile Include="Concrete\T_DriverOwner.cs">
       <DependentUpon>HuoYunDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Concrete\T_GoodsResources.cs">
