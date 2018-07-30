@@ -12,7 +12,7 @@ namespace HuoYun.Domain.Concrete
     using System;
     using System.Collections.Generic;
     
-    public partial class T_DriverOwner
+    public partial class DriverOwner
     {
         public string ID { get; set; }
         public string UID { get; set; }
@@ -32,12 +32,12 @@ namespace HuoYun.Domain.Concrete
         public string ComName { get; set; }
         public string ComAreaID { get; set; }
         public string ComAddr { get; set; }
+        public string BLImgPath { get; set; }
+        public Nullable<int> Auth { get; set; }
         public bool Del { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditMan { get; set; }
-        public string BLImgPath { get; set; }
-        public Nullable<int> Auth { get; set; }
     
-        public virtual T_User T_User { get; set; }
+        public virtual User User { get; set; }
     }
 }

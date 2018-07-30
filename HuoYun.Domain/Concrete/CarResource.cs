@@ -12,16 +12,18 @@ namespace HuoYun.Domain.Concrete
     using System;
     using System.Collections.Generic;
     
-    public partial class T_Dictionary
+    public partial class CarResource
     {
         public string ID { get; set; }
-        public string TCode { get; set; }
-        public string Name { get; set; }
-        public string Spare1 { get; set; }
-        public string Spare2 { get; set; }
-        public string Spare3 { get; set; }
-        public string Spare4 { get; set; }
-        public string Spare5 { get; set; }
+        public string UID { get; set; }
+        public Nullable<System.DateTime> PDATE { get; set; }
+        public string StartAreaID { get; set; }
+        public string EndAreaID1 { get; set; }
+        public string EndAreaID2 { get; set; }
+        public string EndAreaID3 { get; set; }
+        public string EndAreaID4 { get; set; }
+        public string EndAreaID5 { get; set; }
+        public Nullable<System.DateTime> FreeDate { get; set; }
         public Nullable<bool> Del { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditMan { get; set; }

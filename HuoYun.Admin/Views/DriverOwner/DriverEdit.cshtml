@@ -1,5 +1,5 @@
 ﻿@using HuoYun.Domain.Concrete
-@model T_User
+@model User
 
 @{
     ViewBag.Title = "Edit";
@@ -16,64 +16,64 @@
         </div>
     </div>
 
-    for (var i = 0; i < Model.T_DriverOwner.Count; i++)
+    for (var i = 0; i < Model.DriverOwners.Count; i++)
     {
-        @Html.HiddenFor(e => e.T_DriverOwner.ElementAt(i).ID, new { @Name = string.Format("T_DriverOwner[{0}].ID", i) });
-    @Html.HiddenFor(e => e.T_DriverOwner.ElementAt(i).UID, new { @Name = string.Format("T_DriverOwner[{0}].UID", i) });
-    <div class="form-group">
-        <label class="control-label col-md-2">姓名</label>
-        <div class="col-md-2">
-            @*@Html.TextBox("[" + i + "].Name", Model.T_DriverOwner.ElementAt(i).Name, new { @class = "form-control" })*@
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).Name, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].Name", i) })
+        @Html.HiddenFor(e => e.DriverOwners.ElementAt(i).ID, new { @Name = string.Format("DriverOwners[{0}].ID", i) });
+        @Html.HiddenFor(e => e.DriverOwners.ElementAt(i).UID, new { @Name = string.Format("DriverOwners[{0}].UID", i) });
+        <div class="form-group">
+            <label class="control-label col-md-2">姓名</label>
+            <div class="col-md-2">
+                @*@Html.TextBox("[" + i + "].Name", Model.DriverOwners.ElementAt(i).Name, new { @class = "form-control" })*@
+                @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).Name, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].Name", i) })
+            </div>
+
+            @*<label class="control-label col-md-2">微信号</label>
+    <div class="col-md-2">
+        @Html.TextBox("[" + i + "].Wx", Model.DriverOwners.ElementAt(i).Wx, new { @class = "form-control" })
+        @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).Wx, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].Wx", i) })
+    </div>*@
+
+            <label class="control-label col-md-2">身份证号码</label>
+            <div class="col-md-2">
+                @*@Html.TextBox("[" + i + "].IDCardNo", Model.DriverOwners.ElementAt(i).IDCardNo, new { @class = "form-control " })*@
+                @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).IDCardNo, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].IDCardNo", i) })
+            </div>
         </div>
 
-        @*<label class="control-label col-md-2">微信号</label>
-        <div class="col-md-2">
-            @Html.TextBox("[" + i + "].Wx", Model.T_DriverOwner.ElementAt(i).Wx, new { @class = "form-control" })
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).Wx, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].Wx", i) })
-        </div>*@
-
-        <label class="control-label col-md-2">身份证号码</label>
-        <div class="col-md-2">
-            @*@Html.TextBox("[" + i + "].IDCardNo", Model.T_DriverOwner.ElementAt(i).IDCardNo, new { @class = "form-control " })*@
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).IDCardNo, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].IDCardNo", i) })
-        </div>
-    </div>
-
     <div class="form-group">
-        @Html.HiddenFor(e => e.T_DriverOwner.ElementAt(i).IDCardImgPath, new { @Name = string.Format("T_DriverOwner[{0}].IDCardImgPath", i) })
+        @Html.HiddenFor(e => e.DriverOwners.ElementAt(i).IDCardImgPath, new { @Name = string.Format("DriverOwners[{0}].IDCardImgPath", i) })
         <a href="#" onclick="javascript: void (0);">
             <label for="IDCardImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传身份证照片</label>
         </a>
         <div class="col-md-2">
             <input name="IDCardImg" type="file" id="IDCardImg" style="display:none" />
-            <img class="img-thumbnail" id="imgIDCardImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "DriverOwner", new { p_FilePath = Model.T_DriverOwner.ElementAt(i).IDCardImgPath })" />
+            <img class="img-thumbnail" id="imgIDCardImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "DriverOwner", new { p_FilePath = Model.DriverOwners.ElementAt(i).IDCardImgPath })" />
         </div>
-        @Html.HiddenFor(e => e.T_DriverOwner.ElementAt(i).HeadImgPath, new { @Name = string.Format("T_DriverOwner[{0}].HeadImgPath", i) })
+        @Html.HiddenFor(e => e.DriverOwners.ElementAt(i).HeadImgPath, new { @Name = string.Format("DriverOwners[{0}].HeadImgPath", i) })
         <a href="#" onclick="javascript: void (0);">
             <label for="HeadImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传头像</label>
         </a>
         <div class="col-md-2">
             <input name="HeadImg" type="file" id="HeadImg" style="display:none" />
-            <img class="img-thumbnail" id="imgHeadImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "DriverOwner", new { p_FilePath = Model.T_DriverOwner.ElementAt(i).HeadImgPath })" />
+            <img class="img-thumbnail" id="imgHeadImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "DriverOwner", new { p_FilePath = Model.DriverOwners.ElementAt(i).HeadImgPath })" />
         </div>
     </div>
 
     <div class="form-group">
         <label class="control-label col-md-2">车辆品牌</label>
         <div class="col-md-2">
-            @*@Html.TextBox("[" + i + "].CarBrandID", Model.T_DriverOwner.ElementAt(i).CarBrandID, new { @class = "form-control" })*@
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).CarBrandID, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].CarBrandID", i) })
+            @*@Html.TextBox("[" + i + "].CarBrandID", Model.DriverOwners.ElementAt(i).CarBrandID, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).CarBrandID, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].CarBrandID", i) })
         </div>
         <label class="control-label col-md-2">车辆类型</label>
         <div class="col-md-2">
-            @*@Html.TextBox("[" + i + "].CarTypeID", Model.T_DriverOwner.ElementAt(i).CarTypeID, new { @class = "form-control" })*@
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).CarTypeID, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].CarTypeID", i) })
+            @*@Html.TextBox("[" + i + "].CarTypeID", Model.DriverOwners.ElementAt(i).CarTypeID, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).CarTypeID, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].CarTypeID", i) })
         </div>
         <label for="dtp_input2" class="control-label col-md-2">出厂年份</label>
         <div class="input-group col-md-2 date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-            @*@Html.TextBox("[" + i + "].MYear", Model.T_DriverOwner.ElementAt(i).MYear, new { @class = "form-control" })*@
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).MYear, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].MYear", i) })
+            @*@Html.TextBox("[" + i + "].MYear", Model.DriverOwners.ElementAt(i).MYear, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).MYear, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].MYear", i) })
             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
         </div>
         <input type="hidden" id="dtp_input2" value="" />
@@ -82,59 +82,59 @@
     <div class="form-group">
         <label class="control-label col-md-2">车牌号码</label>
         <div class="col-md-2">
-            @*@Html.TextBox("[" + i + "].CarNo", Model.T_DriverOwner.ElementAt(i).CarNo, new { @class = "form-control" })*@
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).CarNo, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].CarNo", i) })
+            @*@Html.TextBox("[" + i + "].CarNo", Model.DriverOwners.ElementAt(i).CarNo, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).CarNo, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].CarNo", i) })
         </div>
         <label class="control-label col-md-2">车长</label>
         <div class="col-md-2">
-            @*@Html.TextBox("[" + i + "].CarLen", Model.T_DriverOwner.ElementAt(i).CarLen, new { @class = "form-control" })*@
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).CarLen, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].CarLen", i) })
+            @*@Html.TextBox("[" + i + "].CarLen", Model.DriverOwners.ElementAt(i).CarLen, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).CarLen, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].CarLen", i) })
         </div>
         <label class="control-label col-md-2">载重</label>
         <div class="col-md-2">
-            @*@Html.TextBox("[" + i + "].CarLoad", Model.T_DriverOwner.ElementAt(i).CarLoad, new { @class = "form-control" })*@
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).CarLoad, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].CarLoad", i) })
+            @*@Html.TextBox("[" + i + "].CarLoad", Model.DriverOwners.ElementAt(i).CarLoad, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).CarLoad, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].CarLoad", i) })
         </div>
     </div>
 
     <div class="form-group">
-        @Html.HiddenFor(e => e.T_DriverOwner.ElementAt(i).CarImgPath, new { @Name = string.Format("T_DriverOwner[{0}].CarImgPath", i) })
+        @Html.HiddenFor(e => e.DriverOwners.ElementAt(i).CarImgPath, new { @Name = string.Format("DriverOwners[{0}].CarImgPath", i) })
         <a href="#" onclick="javascript: void (0);">
             <label for="CarImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传车辆照片</label>
         </a>
         <div class="col-md-2">
             <input name="CarImg" type="file" id="CarImg" style="display:none" />
-            <img class="img-thumbnail" id="imgCarImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "DriverOwner", new { p_FilePath = Model.T_DriverOwner.ElementAt(i).CarImgPath })" />
+            <img class="img-thumbnail" id="imgCarImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "DriverOwner", new { p_FilePath = Model.DriverOwners.ElementAt(i).CarImgPath })" />
         </div>
-        @Html.HiddenFor(e => e.T_DriverOwner.ElementAt(i).DRImgPath, new { @Name = string.Format("T_DriverOwner[{0}].DRImgPath", i) })
+        @Html.HiddenFor(e => e.DriverOwners.ElementAt(i).DRImgPath, new { @Name = string.Format("DriverOwners[{0}].DRImgPath", i) })
         <a href="#" onclick="javascript: void (0);">
             <label for="DRImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传驾驶证照片</label>
         </a>
         <div class="col-md-2">
             <input name="DRImg" type="file" id="DRImg" style="display:none" />
-            <img class="img-thumbnail" id="imgDRImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "DriverOwner", new { p_FilePath = Model.T_DriverOwner.ElementAt(i).DRImgPath })" />
+            <img class="img-thumbnail" id="imgDRImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "DriverOwner", new { p_FilePath = Model.DriverOwners.ElementAt(i).DRImgPath })" />
         </div>
-        @Html.HiddenFor(e => e.T_DriverOwner.ElementAt(i).DLImgPath, new { @Name = string.Format("T_DriverOwner[{0}].DLImgPath", i) })
+        @Html.HiddenFor(e => e.DriverOwners.ElementAt(i).DLImgPath, new { @Name = string.Format("DriverOwners[{0}].DLImgPath", i) })
         <a href="#" onclick="javascript: void (0);">
             <label for="DLImg" class="control-label col-md-2" style="text-decoration:underline;cursor:pointer;">上传车辆行驶证照片</label>
         </a>
         <div class="col-md-2">
             <input name="DLImg" type="file" id="DLImg" style="display:none" />
-            <img class="img-thumbnail" id="imgDLImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "DriverOwner", new { p_FilePath = Model.T_DriverOwner.ElementAt(i).DLImgPath })" />
+            <img class="img-thumbnail" id="imgDLImg" style="width:100px;height:100px;" src="@Url.Action("GetImg", "DriverOwner", new { p_FilePath = Model.DriverOwners.ElementAt(i).DLImgPath })" />
         </div>
     </div>
 
     <div class="form-group">
         <label class="control-label col-md-2">认证状态</label>
         <div class="col-md-2">
-            @*@Html.TextBox("[" + i + "].Authenticated", Model.T_DriverOwner.ElementAt(i).Authenticated, new { @class = "form-control" })*@
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).Auth, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].Auth", i) })
+            @*@Html.TextBox("[" + i + "].Authenticated", Model.DriverOwners.ElementAt(i).Authenticated, new { @class = "form-control" })*@
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).Auth, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].Auth", i) })
         </div>
         @*<label class="control-label col-md-2">押金</label>
-        <div class="col-md-2">
-            @Html.TextBox("[" + i + "].Deposit", Model.T_DriverOwner.ElementAt(i).Deposit, new { @class = "form-control", })
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).Deposit, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].Deposit", i) })
-        </div>*@
+    <div class="col-md-2">
+        @Html.TextBox("[" + i + "].Deposit", Model.DriverOwners.ElementAt(i).Deposit, new { @class = "form-control", })
+        @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).Deposit, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].Deposit", i) })
+    </div>*@
     </div>
     }
     <input type="submit" class="btn btn-primary" value="保存" />
@@ -158,7 +158,7 @@
         showImage($('#DRImg')[0], $('#imgDRImg')[0]);
         showImage($('#DLImg')[0], $('#imgDLImg')[0]);
         $('.form_date').datetimepicker({
-            language:"cn",
+            language: "cn",
             weekStart: 1,
             todayBtn: 1,
             autoclose: 1,

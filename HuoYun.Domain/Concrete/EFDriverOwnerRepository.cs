@@ -11,17 +11,12 @@ namespace HuoYun.Domain.Concrete
     {
         HuoYunEntities context = new HuoYunEntities();
 
-        public IEnumerable<T_DriverOwner> Drivers
+        public IEnumerable<DriverOwner> Drivers
         {
             get
             {
-                return context.T_DriverOwner;
+                return context.DriverOwners;
             }
-        }
-
-        IEnumerable<T_DriverOwner> IDriverOwnerRepository.Drivers
-        {
-            get { throw new NotImplementedException(); }
         }
     }
 }

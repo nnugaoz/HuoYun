@@ -50,10 +50,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IDistrictRepository.cs" />
     <Compile Include="Abstract\IDriverOwnerRepository.cs" />
     <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Concrete\CarFactory.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\CarResource.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\District.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\DriverOwner.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concrete\EFDistrictRepository.cs" />
     <Compile Include="Concrete\EFDriverOwnerRepository.cs" />
     <Compile Include="Concrete\EFUserRepository.cs" />
+    <Compile Include="Concrete\GoodsResource.cs">
+      <DependentUpon>HuoYunDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Concrete\HuoYunDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -69,25 +86,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HuoYunDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Concrete\T_CarFactory.cs">
+    <Compile Include="Concrete\LeadTheWay.cs">
       <DependentUpon>HuoYunDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Concrete\T_CarResources.cs">
-      <DependentUpon>HuoYunDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Concrete\T_Dictionary.cs">
-      <DependentUpon>HuoYunDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Concrete\T_DriverOwner.cs">
-      <DependentUpon>HuoYunDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Concrete\T_GoodsResources.cs">
-      <DependentUpon>HuoYunDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Concrete\T_LeadTheWay.cs">
-      <DependentUpon>HuoYunDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Concrete\T_User.cs">
+    <Compile Include="Concrete\User.cs">
       <DependentUpon>HuoYunDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

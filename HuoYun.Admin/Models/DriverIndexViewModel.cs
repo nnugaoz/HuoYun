@@ -8,8 +8,8 @@ namespace HuoYun.Admin.Models
 {
     public class DriverIndexViewModel
     {
-        public T_User User { get; set; }
+        public User User { get; set; }
 
-        public List<T_DriverOwner> Driver { get; set; }
+        public List<DriverOwner> Driver { get; set; }
     }
 }

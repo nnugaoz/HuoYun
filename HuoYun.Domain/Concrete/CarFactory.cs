@@ -12,19 +12,13 @@ namespace HuoYun.Domain.Concrete
     using System;
     using System.Collections.Generic;
     
-    public partial class T_GoodsResources
+    public partial class CarFactory
     {
         public string ID { get; set; }
-        public string UID { get; set; }
-        public Nullable<System.DateTime> PDATE { get; set; }
-        public string Name { get; set; }
-        public Nullable<decimal> Len { get; set; }
-        public Nullable<decimal> Width { get; set; }
-        public Nullable<decimal> Height { get; set; }
-        public Nullable<decimal> Diameter { get; set; }
-        public Nullable<decimal> Weight { get; set; }
-        public Nullable<decimal> Occupied { get; set; }
-        public string GoodsTypeID { get; set; }
+        public string ContactMan { get; set; }
+        public string ContactPhone { get; set; }
+        public string AreaID { get; set; }
+        public Nullable<int> Sort { get; set; }
         public byte[] Img1 { get; set; }
         public byte[] Img2 { get; set; }
         public byte[] Img3 { get; set; }
@@ -34,13 +28,6 @@ namespace HuoYun.Domain.Concrete
         public byte[] Img7 { get; set; }
         public byte[] Img8 { get; set; }
         public byte[] Img9 { get; set; }
-        public string StartAreaID { get; set; }
-        public string StartAddr { get; set; }
-        public string EndAreaID { get; set; }
-        public string EndAddr { get; set; }
-        public Nullable<decimal> CarLenReq { get; set; }
-        public Nullable<System.DateTime> LoadDate { get; set; }
-        public string Memo { get; set; }
         public Nullable<bool> Del { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditMan { get; set; }

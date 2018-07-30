@@ -37,10 +37,10 @@ namespace HuoYun.Admin.Controllers
             if (ModelState.IsValid)
             {
                 //判断手机号码是否被注册过
-                T_User lUser = mUserRepository.Users.FirstOrDefault(e => e.CellPhone == model.CellPhone && !e.Del);
+                User lUser = mUserRepository.Users.FirstOrDefault(e => e.CellPhone == model.CellPhone && !e.Del);
                 if (lUser == null)
                 {
-                    T_User lNewUser = new T_User();
+                    User lNewUser = new User();
                     lNewUser.ID = Guid.NewGuid().ToString();
                     lNewUser.CellPhone = model.CellPhone;
                     lNewUser.Password = model.Password;
@@ -77,7 +77,7 @@ namespace HuoYun.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(T_User model)
+        public ActionResult Edit(User model)
         {
             if (ModelState.IsValid)
             {

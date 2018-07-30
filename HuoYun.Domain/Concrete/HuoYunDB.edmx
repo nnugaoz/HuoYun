@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="HuoYunModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="T_CarFactory">
+        <EntityType Name="CarFactory">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -27,7 +27,7 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditMan" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="T_CarResources">
+        <EntityType Name="CarResources">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -45,23 +45,18 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditMan" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="T_Dictionary">
+        <EntityType Name="District">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="TCode" Type="varchar" MaxLength="50" />
-          <Property Name="Name" Type="varchar" MaxLength="200" />
-          <Property Name="Spare1" Type="varchar" MaxLength="50" />
-          <Property Name="Spare2" Type="varchar" MaxLength="50" />
-          <Property Name="Spare3" Type="varchar" MaxLength="50" />
-          <Property Name="Spare4" Type="varchar" MaxLength="50" />
-          <Property Name="Spare5" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="PID" Type="varchar" MaxLength="50" />
           <Property Name="Del" Type="bit" />
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditMan" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="T_DriverOwner">
+        <EntityType Name="DriverOwner">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -89,7 +84,7 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditMan" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="T_GoodsResources">
+        <EntityType Name="GoodsResources">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -124,7 +119,7 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditMan" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="T_LeadTheWay">
+        <EntityType Name="LeadTheWay">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -137,7 +132,7 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditMan" Type="varchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="T_User">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -151,39 +146,52 @@
           <Property Name="EditMan" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_T_Driver_T_User">
-          <End Role="T_User" Type="Self.T_User" Multiplicity="0..1" />
-          <End Role="T_DriverOwner" Type="Self.T_DriverOwner" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="DriverOwner" Type="Self.DriverOwner" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="T_User">
+            <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="T_DriverOwner">
+            <Dependent Role="DriverOwner">
               <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="HuoYunModelStoreContainer">
-          <EntitySet Name="T_CarFactory" EntityType="Self.T_CarFactory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_CarResources" EntityType="Self.T_CarResources" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_Dictionary" EntityType="Self.T_Dictionary" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_DriverOwner" EntityType="Self.T_DriverOwner" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_GoodsResources" EntityType="Self.T_GoodsResources" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_LeadTheWay" EntityType="Self.T_LeadTheWay" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="T_User" EntityType="Self.T_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarFactory" EntityType="Self.CarFactory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CarResources" EntityType="Self.CarResources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DriverOwner" EntityType="Self.DriverOwner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoodsResources" EntityType="Self.GoodsResources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeadTheWay" EntityType="Self.LeadTheWay" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_T_Driver_T_User" Association="Self.FK_T_Driver_T_User">
-            <End Role="T_User" EntitySet="T_User" />
-            <End Role="T_DriverOwner" EntitySet="T_DriverOwner" />
+            <End Role="User" EntitySet="User" />
+            <End Role="DriverOwner" EntitySet="DriverOwner" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HuoYunModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="T_CarFactory">
+        <EntityContainer Name="HuoYunEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarFactories" EntityType="HuoYunModel.CarFactory" />
+          <EntitySet Name="CarResources" EntityType="HuoYunModel.CarResource" />
+          <EntitySet Name="Districts" EntityType="HuoYunModel.District" />
+          <EntitySet Name="DriverOwners" EntityType="HuoYunModel.DriverOwner" />
+          <EntitySet Name="GoodsResources" EntityType="HuoYunModel.GoodsResource" />
+          <EntitySet Name="LeadTheWays" EntityType="HuoYunModel.LeadTheWay" />
+          <EntitySet Name="Users" EntityType="HuoYunModel.User" />
+          <AssociationSet Name="FK_T_Driver_T_User" Association="HuoYunModel.FK_T_Driver_T_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="DriverOwner" EntitySet="DriverOwners" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CarFactory">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ContactMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ContactPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AreaID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -201,11 +209,11 @@
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="T_CarResources">
+        <EntityType Name="CarResource">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PDATE" Type="DateTime" Precision="3" />
           <Property Name="StartAreaID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -219,27 +227,51 @@
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="T_Dictionary">
+        <EntityType Name="District">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Spare1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Spare2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Spare3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Spare4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Spare5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Del" Type="Boolean" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="T_GoodsResources">
+        <EntityType Name="DriverOwner">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HeadImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IDCardImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DRImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CarBrandID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CarTypeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MYear" Type="DateTime" Precision="3" />
+          <Property Name="CarNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CarLen" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CarLoad" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CarImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DLImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ComName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ComAreaID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ComAddr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="BLImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Auth" Type="Int32" />
+          <Property Name="Del" Type="Boolean" Nullable="false" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="HuoYunModel.FK_T_Driver_T_User" FromRole="DriverOwner" ToRole="User" />
+        </EntityType>
+        <EntityType Name="GoodsResource">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PDATE" Type="DateTime" Precision="3" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -270,11 +302,11 @@
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="T_LeadTheWay">
+        <EntityType Name="LeadTheWay">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ContactMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ContactPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AreaID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -283,70 +315,28 @@
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="T_User">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CellPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-          <Property Name="Del" Type="Boolean" Nullable="false" />
-          <Property Name="EditDate" Type="DateTime" Precision="3" Nullable="false" />
-          <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Deposit" Type="Decimal" Precision="18" Scale="2" />
-          <NavigationProperty Name="T_DriverOwner" Relationship="HuoYunModel.FK_T_Driver_T_User1" FromRole="T_User" ToRole="T_DriverOwner" />
-        </EntityType>
-        <EntityContainer Name="HuoYunEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="T_CarFactory" EntityType="Self.T_CarFactory" />
-          <EntitySet Name="T_CarResources" EntityType="Self.T_CarResources" />
-          <EntitySet Name="T_Dictionary" EntityType="Self.T_Dictionary" />
-          <EntitySet Name="T_GoodsResources" EntityType="Self.T_GoodsResources" />
-          <EntitySet Name="T_LeadTheWay" EntityType="Self.T_LeadTheWay" />
-          <EntitySet Name="T_User" EntityType="Self.T_User" />
-          <EntitySet Name="T_DriverOwner" EntityType="HuoYunModel.T_DriverOwner" />
-          <AssociationSet Name="FK_T_Driver_T_User1" Association="HuoYunModel.FK_T_Driver_T_User1">
-            <End Role="T_User" EntitySet="T_User" />
-            <End Role="T_DriverOwner" EntitySet="T_DriverOwner" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="T_DriverOwner">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IDCardNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="HeadImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="IDCardImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="DRImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="CarBrandID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CarTypeID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MYear" Type="DateTime" Precision="3" />
-          <Property Name="CarNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CarLen" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="CarLoad" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="CarImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="DLImgPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ComName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="ComAreaID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ComAddr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CellPhone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="Deposit" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Del" Type="Boolean" Nullable="false" />
-          <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="EditMan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="T_User" Relationship="HuoYunModel.FK_T_Driver_T_User1" FromRole="T_DriverOwner" ToRole="T_User" />
-          <Property Name="BLImgPath" Type="String" />
-          <Property Name="Auth" Type="Int32" />
+          <Property Name="EditDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EditMan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DriverOwners" Relationship="HuoYunModel.FK_T_Driver_T_User" FromRole="User" ToRole="DriverOwner" />
         </EntityType>
-        <Association Name="FK_T_Driver_T_User1">
-          <End Type="HuoYunModel.T_User" Role="T_User" Multiplicity="0..1" />
-          <End Type="HuoYunModel.T_DriverOwner" Role="T_DriverOwner" Multiplicity="*" />
+        <Association Name="FK_T_Driver_T_User">
+          <End Type="HuoYunModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="HuoYunModel.DriverOwner" Role="DriverOwner" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="T_User">
+            <Principal Role="User">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="T_DriverOwner">
+            <Dependent Role="DriverOwner">
               <PropertyRef Name="UID" />
             </Dependent>
           </ReferentialConstraint>
@@ -357,137 +347,68 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="HuoYunModelStoreContainer" CdmEntityContainer="HuoYunEntities">
-          <EntitySetMapping Name="T_CarFactory">
-            <EntityTypeMapping TypeName="HuoYunModel.T_CarFactory">
-              <MappingFragment StoreEntitySet="T_CarFactory">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ContactMan" ColumnName="ContactMan" />
-                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
-                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Img1" ColumnName="Img1" />
-                <ScalarProperty Name="Img2" ColumnName="Img2" />
-                <ScalarProperty Name="Img3" ColumnName="Img3" />
-                <ScalarProperty Name="Img4" ColumnName="Img4" />
-                <ScalarProperty Name="Img5" ColumnName="Img5" />
-                <ScalarProperty Name="Img6" ColumnName="Img6" />
-                <ScalarProperty Name="Img7" ColumnName="Img7" />
-                <ScalarProperty Name="Img8" ColumnName="Img8" />
-                <ScalarProperty Name="Img9" ColumnName="Img9" />
-                <ScalarProperty Name="Del" ColumnName="Del" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <EntitySetMapping Name="CarFactories">
+            <EntityTypeMapping TypeName="HuoYunModel.CarFactory">
+              <MappingFragment StoreEntitySet="CarFactory">
                 <ScalarProperty Name="EditMan" ColumnName="EditMan" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="Del" ColumnName="Del" />
+                <ScalarProperty Name="Img9" ColumnName="Img9" />
+                <ScalarProperty Name="Img8" ColumnName="Img8" />
+                <ScalarProperty Name="Img7" ColumnName="Img7" />
+                <ScalarProperty Name="Img6" ColumnName="Img6" />
+                <ScalarProperty Name="Img5" ColumnName="Img5" />
+                <ScalarProperty Name="Img4" ColumnName="Img4" />
+                <ScalarProperty Name="Img3" ColumnName="Img3" />
+                <ScalarProperty Name="Img2" ColumnName="Img2" />
+                <ScalarProperty Name="Img1" ColumnName="Img1" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactMan" ColumnName="ContactMan" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="T_CarResources">
-            <EntityTypeMapping TypeName="HuoYunModel.T_CarResources">
-              <MappingFragment StoreEntitySet="T_CarResources">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UID" ColumnName="UID" />
-                <ScalarProperty Name="PDATE" ColumnName="PDATE" />
-                <ScalarProperty Name="StartAreaID" ColumnName="StartAreaID" />
-                <ScalarProperty Name="EndAreaID1" ColumnName="EndAreaID1" />
-                <ScalarProperty Name="EndAreaID2" ColumnName="EndAreaID2" />
-                <ScalarProperty Name="EndAreaID3" ColumnName="EndAreaID3" />
-                <ScalarProperty Name="EndAreaID4" ColumnName="EndAreaID4" />
-                <ScalarProperty Name="EndAreaID5" ColumnName="EndAreaID5" />
+          <EntitySetMapping Name="CarResources">
+            <EntityTypeMapping TypeName="HuoYunModel.CarResource">
+              <MappingFragment StoreEntitySet="CarResources">
+                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="Del" ColumnName="Del" />
                 <ScalarProperty Name="FreeDate" ColumnName="FreeDate" />
-                <ScalarProperty Name="Del" ColumnName="Del" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_Dictionary">
-            <EntityTypeMapping TypeName="HuoYunModel.T_Dictionary">
-              <MappingFragment StoreEntitySet="T_Dictionary">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="TCode" ColumnName="TCode" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Spare1" ColumnName="Spare1" />
-                <ScalarProperty Name="Spare2" ColumnName="Spare2" />
-                <ScalarProperty Name="Spare3" ColumnName="Spare3" />
-                <ScalarProperty Name="Spare4" ColumnName="Spare4" />
-                <ScalarProperty Name="Spare5" ColumnName="Spare5" />
-                <ScalarProperty Name="Del" ColumnName="Del" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_GoodsResources">
-            <EntityTypeMapping TypeName="HuoYunModel.T_GoodsResources">
-              <MappingFragment StoreEntitySet="T_GoodsResources">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UID" ColumnName="UID" />
-                <ScalarProperty Name="PDATE" ColumnName="PDATE" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Len" ColumnName="Len" />
-                <ScalarProperty Name="Width" ColumnName="Width" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="Occupied" ColumnName="Occupied" />
-                <ScalarProperty Name="GoodsTypeID" ColumnName="GoodsTypeID" />
-                <ScalarProperty Name="Img1" ColumnName="Img1" />
-                <ScalarProperty Name="Img2" ColumnName="Img2" />
-                <ScalarProperty Name="Img3" ColumnName="Img3" />
-                <ScalarProperty Name="Img4" ColumnName="Img4" />
-                <ScalarProperty Name="Img5" ColumnName="Img5" />
-                <ScalarProperty Name="Img6" ColumnName="Img6" />
-                <ScalarProperty Name="Img7" ColumnName="Img7" />
-                <ScalarProperty Name="Img8" ColumnName="Img8" />
-                <ScalarProperty Name="Img9" ColumnName="Img9" />
+                <ScalarProperty Name="EndAreaID5" ColumnName="EndAreaID5" />
+                <ScalarProperty Name="EndAreaID4" ColumnName="EndAreaID4" />
+                <ScalarProperty Name="EndAreaID3" ColumnName="EndAreaID3" />
+                <ScalarProperty Name="EndAreaID2" ColumnName="EndAreaID2" />
+                <ScalarProperty Name="EndAreaID1" ColumnName="EndAreaID1" />
                 <ScalarProperty Name="StartAreaID" ColumnName="StartAreaID" />
-                <ScalarProperty Name="StartAddr" ColumnName="StartAddr" />
-                <ScalarProperty Name="EndAreaID" ColumnName="EndAreaID" />
-                <ScalarProperty Name="EndAddr" ColumnName="EndAddr" />
-                <ScalarProperty Name="CarLenReq" ColumnName="CarLenReq" />
-                <ScalarProperty Name="LoadDate" ColumnName="LoadDate" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="Del" ColumnName="Del" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="T_LeadTheWay">
-            <EntityTypeMapping TypeName="HuoYunModel.T_LeadTheWay">
-              <MappingFragment StoreEntitySet="T_LeadTheWay">
+                <ScalarProperty Name="PDATE" ColumnName="PDATE" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ContactMan" ColumnName="ContactMan" />
-                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
-                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
-                <ScalarProperty Name="Sort" ColumnName="Sort" />
-                <ScalarProperty Name="Del" ColumnName="Del" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="T_User">
-            <EntityTypeMapping TypeName="HuoYunModel.T_User">
-              <MappingFragment StoreEntitySet="T_User">
-                <ScalarProperty Name="Deposit" ColumnName="Deposit" />
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="HuoYunModel.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="Del" ColumnName="Del" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Del" ColumnName="Del" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="T_DriverOwner">
-            <EntityTypeMapping TypeName="HuoYunModel.T_DriverOwner">
-              <MappingFragment StoreEntitySet="T_DriverOwner">
+          <EntitySetMapping Name="DriverOwners">
+            <EntityTypeMapping TypeName="HuoYunModel.DriverOwner">
+              <MappingFragment StoreEntitySet="DriverOwner">
+                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="Del" ColumnName="Del" />
                 <ScalarProperty Name="Auth" ColumnName="Auth" />
                 <ScalarProperty Name="BLImgPath" ColumnName="BLImgPath" />
-                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="Del" ColumnName="Del" />
                 <ScalarProperty Name="ComAddr" ColumnName="ComAddr" />
                 <ScalarProperty Name="ComAreaID" ColumnName="ComAreaID" />
                 <ScalarProperty Name="ComName" ColumnName="ComName" />
@@ -505,6 +426,70 @@
                 <ScalarProperty Name="IDCardNo" ColumnName="IDCardNo" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoodsResources">
+            <EntityTypeMapping TypeName="HuoYunModel.GoodsResource">
+              <MappingFragment StoreEntitySet="GoodsResources">
+                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="Del" ColumnName="Del" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="LoadDate" ColumnName="LoadDate" />
+                <ScalarProperty Name="CarLenReq" ColumnName="CarLenReq" />
+                <ScalarProperty Name="EndAddr" ColumnName="EndAddr" />
+                <ScalarProperty Name="EndAreaID" ColumnName="EndAreaID" />
+                <ScalarProperty Name="StartAddr" ColumnName="StartAddr" />
+                <ScalarProperty Name="StartAreaID" ColumnName="StartAreaID" />
+                <ScalarProperty Name="Img9" ColumnName="Img9" />
+                <ScalarProperty Name="Img8" ColumnName="Img8" />
+                <ScalarProperty Name="Img7" ColumnName="Img7" />
+                <ScalarProperty Name="Img6" ColumnName="Img6" />
+                <ScalarProperty Name="Img5" ColumnName="Img5" />
+                <ScalarProperty Name="Img4" ColumnName="Img4" />
+                <ScalarProperty Name="Img3" ColumnName="Img3" />
+                <ScalarProperty Name="Img2" ColumnName="Img2" />
+                <ScalarProperty Name="Img1" ColumnName="Img1" />
+                <ScalarProperty Name="GoodsTypeID" ColumnName="GoodsTypeID" />
+                <ScalarProperty Name="Occupied" ColumnName="Occupied" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Diameter" ColumnName="Diameter" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Len" ColumnName="Len" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PDATE" ColumnName="PDATE" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeadTheWays">
+            <EntityTypeMapping TypeName="HuoYunModel.LeadTheWay">
+              <MappingFragment StoreEntitySet="LeadTheWay">
+                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="Del" ColumnName="Del" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactMan" ColumnName="ContactMan" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HuoYunModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="EditMan" ColumnName="EditMan" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="Del" ColumnName="Del" />
+                <ScalarProperty Name="Deposit" ColumnName="Deposit" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

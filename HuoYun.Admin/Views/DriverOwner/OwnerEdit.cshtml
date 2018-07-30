@@ -1,4 +1,4 @@
-﻿@model HuoYun.Domain.Concrete.T_User
+﻿@model HuoYun.Domain.Concrete.User
 
 @{
     ViewBag.Title = "OwnerEdit";
@@ -17,18 +17,18 @@
         </div>
     </div>
 
-    for (var i = 0; i < Model.T_DriverOwner.Count; i++)
+    for (var i = 0; i < Model.DriverOwners.Count; i++)
     {
-        @Html.HiddenFor(e => e.T_DriverOwner.ElementAt(i).ID, new { @Name = string.Format("T_DriverOwner[{0}].ID", i) });
+        @Html.HiddenFor(e => e.DriverOwners.ElementAt(i).ID, new { @Name = string.Format("DriverOwners[{0}].ID", i) });
 
     <div class="form-group">
         <label class="control-label col-md-2">姓名</label>
         <div class=" col-md-2">
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).Name, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].Name", i) })
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).Name, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].Name", i) })
         </div>
         <label class="control-label col-md-2">身份证号码</label>
         <div class=" col-md-2">
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).IDCardNo, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].IDCardNo", i) })
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).IDCardNo, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].IDCardNo", i) })
         </div>
     </div>
 
@@ -36,40 +36,39 @@
         <label class="control-label col-md-2 text-info" for="fileIDCardImg" style="text-decoration:underline">上传身份照片</label>
         <div class=" col-md-2">
             <input type="file" id="fileIDCardImg" name="fileIDCardImg" style="display:none" />
-            <img id="imgIDCardImg" class="img-thumbnail" style="width: 100px; height: 100px; " src="@Url.Action("GetImg", new { p_FilePath = Model.T_DriverOwner.ElementAt(i).IDCardImgPath })" />
-
+            <img id="imgIDCardImg" class="img-thumbnail" style="width: 100px; height: 100px; " src="@Url.Action("GetImg", new { p_FilePath = Model.DriverOwners.ElementAt(i).IDCardImgPath })" />
         </div>
 
         <label class="control-label col-md-2 text-info" for="fileHeadImg" style="text-decoration:underline">上传头像</label>
         <div class=" col-md-2">
             <input type="file" id="fileHeadImg" name="fileHeadImg" style="display:none" />
-            <img id="imgHeadImg" class="img-thumbnail" style="width: 100px; height: 100px; " src="@Url.Action("GetImg", new { p_FilePath = Model.T_DriverOwner.ElementAt(i).HeadImgPath })" />
+            <img id="imgHeadImg" class="img-thumbnail" style="width: 100px; height: 100px; " src="@Url.Action("GetImg", new { p_FilePath = Model.DriverOwners.ElementAt(i).HeadImgPath })" />
         </div>
     </div>
 
     <div class="form-group">
         <label class="control-label col-md-2">公司名称</label>
         <div class="col-md-2">
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).ComName, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].ComName", i) })
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).ComName, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].ComName", i) })
         </div>
 
         <label class="control-label col-md-2">公司区域ID</label>
         <div class="col-md-2">
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).ComAreaID, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].ComAreaID", i) })
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).ComAreaID, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].ComAreaID", i) })
         </div>
     </div>
 
     <div class="form-group">
         <label class="col-md-2 control-label">公司详细地址</label>
         <div class="col-md-6">
-            @Html.TextBoxFor(e => e.T_DriverOwner.ElementAt(i).ComAddr, new { @class = "form-control", @Name = string.Format("T_DriverOwner[{0}].ComAddr", i) })
+            @Html.TextBoxFor(e => e.DriverOwners.ElementAt(i).ComAddr, new { @class = "form-control", @Name = string.Format("DriverOwners[{0}].ComAddr", i) })
         </div>
     </div>
     <div class="form-group">
         <label class="control-label col-md-2 text-info" for="fileBLImg" style="text-decoration:underline">上传公司营业执照</label>
         <div class="col-md-2">
             <input type="file" id="fileBLImg" name="fileBLImg" style="display:none" />
-            <img id="imgBLImg" class="img-thumbnail" style="width: 100px; height: 100px" src="@Url.Action("GetImg", new { p_FilePath = Model.T_DriverOwner.ElementAt(i).BLImgPath })" />
+            <img id="imgBLImg" class="img-thumbnail" style="width: 100px; height: 100px" src="@Url.Action("GetImg", new { p_FilePath = Model.DriverOwners.ElementAt(i).BLImgPath })" />
         </div>
     </div>
     }

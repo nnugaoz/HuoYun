@@ -9,6 +9,6 @@ namespace HuoYun.Domain.Abstract
 {
     public interface IDriverOwnerRepository
     {
-        IEnumerable<T_DriverOwner> Drivers { get; }
+        IEnumerable<DriverOwner> Drivers { get; }
     }
 }

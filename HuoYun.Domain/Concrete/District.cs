@@ -12,22 +12,11 @@ namespace HuoYun.Domain.Concrete
     using System;
     using System.Collections.Generic;
     
-    public partial class T_CarFactory
+    public partial class District
     {
         public string ID { get; set; }
-        public string ContactMan { get; set; }
-        public string ContactPhone { get; set; }
-        public string AreaID { get; set; }
-        public Nullable<int> Sort { get; set; }
-        public byte[] Img1 { get; set; }
-        public byte[] Img2 { get; set; }
-        public byte[] Img3 { get; set; }
-        public byte[] Img4 { get; set; }
-        public byte[] Img5 { get; set; }
-        public byte[] Img6 { get; set; }
-        public byte[] Img7 { get; set; }
-        public byte[] Img8 { get; set; }
-        public byte[] Img9 { get; set; }
+        public string Name { get; set; }
+        public string PID { get; set; }
         public Nullable<bool> Del { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditMan { get; set; }

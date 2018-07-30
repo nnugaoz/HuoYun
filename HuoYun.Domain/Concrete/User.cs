@@ -12,22 +12,22 @@ namespace HuoYun.Domain.Concrete
     using System;
     using System.Collections.Generic;
     
-    public partial class T_User
+    public partial class User
     {
-        public T_User()
+        public User()
         {
-            this.T_DriverOwner = new HashSet<T_DriverOwner>();
+            this.DriverOwners = new HashSet<DriverOwner>();
         }
     
         public string ID { get; set; }
         public string CellPhone { get; set; }
         public string Password { get; set; }
         public int Type { get; set; }
+        public Nullable<decimal> Deposit { get; set; }
         public bool Del { get; set; }
         public System.DateTime EditDate { get; set; }
         public string EditMan { get; set; }
-        public Nullable<decimal> Deposit { get; set; }
     
-        public virtual ICollection<T_DriverOwner> T_DriverOwner { get; set; }
+        public virtual ICollection<DriverOwner> DriverOwners { get; set; }
     }
 }

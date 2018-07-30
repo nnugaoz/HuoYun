@@ -33,15 +33,15 @@ namespace HuoYun.Admin.Controllers
         {
             var lUser = mUserRepository.Users.FirstOrDefault(e => e.ID == p_UserID);
 
-            if (lUser.T_DriverOwner.Count == 0)
+            if (lUser.DriverOwners.Count == 0)
             {
-                lUser.T_DriverOwner.Add(new T_DriverOwner());
+                lUser.DriverOwners.Add(new DriverOwner());
             }
             return View(lUser);
         }
 
         [HttpPost]
-        public ActionResult DriverEdit(T_User pUser)
+        public ActionResult DriverEdit(User pUser)
         {
             if (ModelState.IsValid)
             {
@@ -56,31 +56,31 @@ namespace HuoYun.Admin.Controllers
                         case "IDCardImg":
                             lFilePath += "/IDCardImg" + pUser.ID + ".jpg";
                             Request.Files[i].SaveAs(lFilePath);
-                            pUser.T_DriverOwner.ElementAt(0).IDCardImgPath = lFilePath;
+                            pUser.DriverOwners.ElementAt(0).IDCardImgPath = lFilePath;
                             break;
 
                         case "HeadImg":
                             lFilePath += "/HeadImg" + pUser.ID + ".jpg";
                             Request.Files[i].SaveAs(lFilePath);
-                            pUser.T_DriverOwner.ElementAt(0).HeadImgPath = lFilePath;
+                            pUser.DriverOwners.ElementAt(0).HeadImgPath = lFilePath;
                             break;
 
                         case "CarImg":
                             lFilePath += "/CarImg" + pUser.ID + ".jpg";
                             Request.Files[i].SaveAs(lFilePath);
-                            pUser.T_DriverOwner.ElementAt(0).CarImgPath = lFilePath;
+                            pUser.DriverOwners.ElementAt(0).CarImgPath = lFilePath;
                             break;
 
                         case "DRImg":
                             lFilePath += "/DRImg" + pUser.ID + ".jpg";
                             Request.Files[i].SaveAs(lFilePath);
-                            pUser.T_DriverOwner.ElementAt(0).DRImgPath = lFilePath;
+                            pUser.DriverOwners.ElementAt(0).DRImgPath = lFilePath;
                             break;
 
                         case "DLImg":
                             lFilePath += "/DLImg" + pUser.ID + ".jpg";
                             Request.Files[i].SaveAs(lFilePath);
-                            pUser.T_DriverOwner.ElementAt(0).DLImgPath = lFilePath;
+                            pUser.DriverOwners.ElementAt(0).DLImgPath = lFilePath;
                             break;
                     }
                 }
@@ -96,30 +96,30 @@ namespace HuoYun.Admin.Controllers
         public ActionResult OwnerEdit(string p_UserID, string p_DriverOwnerID)
         {
             var lUser = mUserRepository.Users.FirstOrDefault(e => e.ID == p_UserID);
-            var lDriverOwner = lUser.T_DriverOwner.FirstOrDefault(e => e.ID == p_DriverOwnerID);
-            var lOwnerViewModel = new T_User
+            var lDriverOwner = lUser.DriverOwners.FirstOrDefault(e => e.ID == p_DriverOwnerID);
+            var lOwnerViewModel = new User
             {
                 ID = lUser.ID
                 ,
                 CellPhone = lUser.CellPhone
                 ,
-                T_DriverOwner = new List<T_DriverOwner>()
+                DriverOwners = new List<DriverOwner>()
             };
 
             if (lDriverOwner != null)
             {
-                lOwnerViewModel.T_DriverOwner.Add(lDriverOwner);
+                lOwnerViewModel.DriverOwners.Add(lDriverOwner);
             }
             else
             {
-                lOwnerViewModel.T_DriverOwner.Add(new T_DriverOwner());
+                lOwnerViewModel.DriverOwners.Add(new DriverOwner());
             }
 
             return View(lOwnerViewModel);
         }
 
         [HttpPost]
-        public ActionResult OwnerEdit(T_User p_User)
+        public ActionResult OwnerEdit(User p_User)
         {
             if (ModelState.IsValid)
             {
@@ -135,19 +135,19 @@ namespace HuoYun.Admin.Controllers
                         case "fileIDCardImg":
                             lFilePath += "/IDCard" + p_User.ID + ".jpg";
                             Request.Files[i].SaveAs(lFilePath);
-                            p_User.T_DriverOwner.ElementAt(0).IDCardImgPath = lFilePath;
+                            p_User.DriverOwners.ElementAt(0).IDCardImgPath = lFilePath;
                             break;
 
                         case "fileHeadImg":
                             lFilePath += "/Head" + p_User.ID + ".jpg";
                             Request.Files[i].SaveAs(lFilePath);
-                            p_User.T_DriverOwner.ElementAt(0).HeadImgPath = lFilePath;
+                            p_User.DriverOwners.ElementAt(0).HeadImgPath = lFilePath;
                             break;
 
                         case "fileBLImg":
                             lFilePath += "/BL" + p_User.ID + ".jpg";
                             Request.Files[i].SaveAs(lFilePath);
-                            p_User.T_DriverOwner.ElementAt(0).BLImgPath = lFilePath;
+                            p_User.DriverOwners.ElementAt(0).BLImgPath = lFilePath;
                             break;
                     }
                 }

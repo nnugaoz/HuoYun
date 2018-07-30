@@ -12,18 +12,13 @@ namespace HuoYun.Domain.Concrete
     using System;
     using System.Collections.Generic;
     
-    public partial class T_CarResources
+    public partial class LeadTheWay
     {
         public string ID { get; set; }
-        public string UID { get; set; }
-        public Nullable<System.DateTime> PDATE { get; set; }
-        public string StartAreaID { get; set; }
-        public string EndAreaID1 { get; set; }
-        public string EndAreaID2 { get; set; }
-        public string EndAreaID3 { get; set; }
-        public string EndAreaID4 { get; set; }
-        public string EndAreaID5 { get; set; }
-        public Nullable<System.DateTime> FreeDate { get; set; }
+        public string ContactMan { get; set; }
+        public string ContactPhone { get; set; }
+        public string AreaID { get; set; }
+        public Nullable<int> Sort { get; set; }
         public Nullable<bool> Del { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditMan { get; set; }

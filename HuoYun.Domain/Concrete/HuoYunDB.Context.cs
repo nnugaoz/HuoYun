@@ -25,12 +25,12 @@ namespace HuoYun.Domain.Concrete
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<T_CarFactory> T_CarFactory { get; set; }
-        public virtual DbSet<T_CarResources> T_CarResources { get; set; }
-        public virtual DbSet<T_Dictionary> T_Dictionary { get; set; }
-        public virtual DbSet<T_GoodsResources> T_GoodsResources { get; set; }
-        public virtual DbSet<T_LeadTheWay> T_LeadTheWay { get; set; }
-        public virtual DbSet<T_User> T_User { get; set; }
-        public virtual DbSet<T_DriverOwner> T_DriverOwner { get; set; }
+        public virtual DbSet<CarFactory> CarFactories { get; set; }
+        public virtual DbSet<CarResource> CarResources { get; set; }
+        public virtual DbSet<District> Districts { get; set; }
+        public virtual DbSet<DriverOwner> DriverOwners { get; set; }
+        public virtual DbSet<GoodsResource> GoodsResources { get; set; }
+        public virtual DbSet<LeadTheWay> LeadTheWays { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

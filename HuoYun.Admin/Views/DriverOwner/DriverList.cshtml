@@ -1,5 +1,5 @@
 ﻿@using HuoYun.Domain.Concrete
-@model IEnumerable<T_User>
+@model IEnumerable<User>
 
 @{
     ViewBag.Title = "List";
@@ -25,9 +25,9 @@
             @foreach (var user in Model)
             {
                 <tr>
-                    @if (user.T_DriverOwner.Count() > 0)
+                    @if (user.DriverOwners.Count() > 0)
                     {
-                        foreach (var driver in user.T_DriverOwner)
+                        foreach (var driver in user.DriverOwners)
                         {
                             <td>@user.CellPhone</td>
                             <td>@driver.Name</td>

@@ -12,13 +12,16 @@ namespace HuoYun.Domain.Concrete
     using System;
     using System.Collections.Generic;
     
-    public partial class T_LeadTheWay
+    public partial class Dictionary
     {
         public string ID { get; set; }
-        public string ContactMan { get; set; }
-        public string ContactPhone { get; set; }
-        public string AreaID { get; set; }
-        public Nullable<int> Sort { get; set; }
+        public string TCode { get; set; }
+        public string Name { get; set; }
+        public string Spare1 { get; set; }
+        public string Spare2 { get; set; }
+        public string Spare3 { get; set; }
+        public string Spare4 { get; set; }
+        public string Spare5 { get; set; }
         public Nullable<bool> Del { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditMan { get; set; }

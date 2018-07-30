@@ -12,19 +12,19 @@ namespace HuoYun.Domain.Concrete
     {
         HuoYunEntities context = new HuoYunEntities();
 
-        public IEnumerable<T_User> Users
+        public IEnumerable<User> Users
         {
             get
             {
-                return context.T_User;
+                return context.Users;
             }
         }
 
-        public void Save(T_User p_User)
+        public void Save(User p_User)
         {
             try
             {
-                T_User lUser = context.T_User.FirstOrDefault(e => e.ID == p_User.ID);
+                User lUser = context.Users.FirstOrDefault(e => e.ID == p_User.ID);
 
                 if (lUser != null)
                 {
@@ -36,7 +36,7 @@ namespace HuoYun.Domain.Concrete
                 }
                 else
                 {
-                    context.T_User.Add(p_User);
+                    context.Users.Add(p_User);
                 }
                 context.SaveChanges();
             }
@@ -58,22 +58,22 @@ namespace HuoYun.Domain.Concrete
 
         public void Delete(string p_ID)
         {
-            T_User lUser = context.T_User.FirstOrDefault(e => e.ID == p_ID);
+            User lUser = context.Users.FirstOrDefault(e => e.ID == p_ID);
 
             if (lUser != null)
             {
-                context.T_User.Remove(lUser);
+                context.Users.Remove(lUser);
             }
             context.SaveChanges();
         }
 
-        public void SaveDriver(T_User p_User)
+        public void SaveDriver(User p_User)
         {
-            foreach (var pDriver in p_User.T_DriverOwner)
+            foreach (var pDriver in p_User.DriverOwners)
             {
                 if (pDriver.ID == null)
                 {
-                    T_DriverOwner lDriver = new T_DriverOwner
+                    DriverOwner lDriver = new DriverOwner
                     {
                         ID = Guid.NewGuid().ToString()
                         ,
@@ -107,11 +107,11 @@ namespace HuoYun.Domain.Concrete
                         ,
                         DLImgPath = pDriver.DLImgPath
                     };
-                    context.T_DriverOwner.Add(lDriver);
+                    context.DriverOwners.Add(lDriver);
                 }
                 else
                 {
-                    var lDriver = context.T_DriverOwner.FirstOrDefault(e => e.ID == pDriver.ID);
+                    var lDriver = context.DriverOwners.FirstOrDefault(e => e.ID == pDriver.ID);
                     if (lDriver != null)
                     {
                         lDriver.Name = pDriver.Name;
@@ -135,17 +135,17 @@ namespace HuoYun.Domain.Concrete
         }
 
 
-        public void SaveOwner(T_User p_User)
+        public void SaveOwner(User p_User)
         {
-            T_DriverOwner lOwner;
-            T_User lUser = context.T_User.FirstOrDefault(e => e.ID == p_User.ID);
+            DriverOwner lOwner;
+            User lUser = context.Users.FirstOrDefault(e => e.ID == p_User.ID);
 
-            foreach (var lDriverOwner in p_User.T_DriverOwner)
+            foreach (var lDriverOwner in p_User.DriverOwners)
             {
                 if (lDriverOwner.ID == "" || lDriverOwner.ID == null)
                 {
                     //新增
-                    lOwner = new T_DriverOwner();
+                    lOwner = new DriverOwner();
                     lOwner.ID = Guid.NewGuid().ToString();
                     lOwner.Name = lDriverOwner.Name;
                     lOwner.IDCardNo = lDriverOwner.IDCardNo;
@@ -159,12 +159,12 @@ namespace HuoYun.Domain.Concrete
                     lOwner.EditDate = DateTime.Now;
                     lOwner.EditMan = "Admin";
                     lOwner.Del = false;
-                    lUser.T_DriverOwner.Add(lOwner);
+                    lUser.DriverOwners.Add(lOwner);
                 }
                 else
                 {
                     //更新
-                    lOwner = lUser.T_DriverOwner.FirstOrDefault(e => e.ID == lDriverOwner.ID);
+                    lOwner = lUser.DriverOwners.FirstOrDefault(e => e.ID == lDriverOwner.ID);
                     lOwner.Name = lDriverOwner.Name;
                     lOwner.IDCardNo = lDriverOwner.IDCardNo;
                     lOwner.IDCardImgPath = lDriverOwner.IDCardImgPath;

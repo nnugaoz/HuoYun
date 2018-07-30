@@ -9,14 +9,14 @@ namespace HuoYun.Domain.Abstract
 {
     public interface IUserRepository
     {
-        IEnumerable<T_User> Users { get; }
+        IEnumerable<User> Users { get; }
 
-        void Save(T_User p_User);
+        void Save(User p_User);
 
-        void SaveDriver(T_User p_User);
+        void SaveDriver(User p_User);
 
         void Delete(string p_ID);
 
-        void SaveOwner(T_User p_User);
+        void SaveOwner(User p_User);
     }
 }

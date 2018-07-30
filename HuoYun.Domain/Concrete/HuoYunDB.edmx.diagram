@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="af724c82115b492a805c0ba9df1adde2" Name="Diagram1" ZoomLevel="77">
-        <EntityTypeShape EntityType="HuoYunModel.T_CarFactory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuoYunModel.T_CarResources" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuoYunModel.T_Dictionary" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuoYunModel.T_GoodsResources" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuoYunModel.T_LeadTheWay" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuoYunModel.T_User" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HuoYunModel.T_DriverOwner" Width="1.5" PointX="11" PointY="8.125" />
-        <AssociationConnector Association="HuoYunModel.FK_T_Driver_T_User1" />
+      <Diagram DiagramId="af724c82115b492a805c0ba9df1adde2" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="HuoYunModel.CarFactory" Width="1.5" PointX="5.75" PointY="10.75" />
+        <EntityTypeShape EntityType="HuoYunModel.CarResource" Width="1.5" PointX="5.75" PointY="4.875" />
+        <EntityTypeShape EntityType="HuoYunModel.District" Width="1.5" PointX="7.75" PointY="10.75" />
+        <EntityTypeShape EntityType="HuoYunModel.DriverOwner" Width="1.5" PointX="3" PointY="8.125" />
+        <EntityTypeShape EntityType="HuoYunModel.GoodsResource" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="HuoYunModel.LeadTheWay" Width="1.5" PointX="11.75" PointY="10.75" />
+        <EntityTypeShape EntityType="HuoYunModel.User" Width="1.5" PointX="0.75" PointY="9.375" />
+        <AssociationConnector Association="HuoYunModel.FK_T_Driver_T_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
