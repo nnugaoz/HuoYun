@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HuoYun.Domain.Concrete
 {
-    class EFDistrictRepository : IDistrictRepository
+    public class EFDistrictRepository : IDistrictRepository
     {
         HuoYunEntities context = new HuoYunEntities();
 

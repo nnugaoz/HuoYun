@@ -22,6 +22,7 @@ namespace HuoYun.Admin.Infrastructure
         private void Bindings()
         {
             kernel.Bind<IUserRepository>().To<EFUserRepository>();
+            kernel.Bind<IDistrictRepository>().To<EFDistrictRepository>();
         }
 
         public object GetService(Type serviceType)
